@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfrastructuRO – Blogul Infrastructurii Românești</title>
+  <meta name="description" content="Analize, știri și perspective despre infrastructura rutieră din România și soluții sustenabile pentru viitor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #09100a;
+      --surface:   #111912;
+      --surface2:  #182019;
+      --surface3:  #1e2820;
+      --green:     #3ab54a;
+      --green2:    #2d9e3c;
+      --green-dim: rgba(58,181,74,.13);
+      --green-glow:rgba(58,181,74,.07);
+      --white:     #eef5ef;
+      --white-dim: #9eb5a2;
+      --muted:     #4d6852;
+      --border:    rgba(58,181,74,.14);
+      --border2:   rgba(58,181,74,.22);
+      --radius:    6px;
+      --font:      'Geist', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green2); border-radius: 10px; }
+
+    /* ─────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(9,16,10,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hdr {
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2.5rem);
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.35rem; font-weight: 700; letter-spacing: -.03em;
+      cursor: pointer; user-select: none;
+    }
+    .logo span { color: var(--green); }
+
+    nav { display: flex; align-items: center; gap: 1.8rem; }
+
+    nav a {
+      font-size: .82rem; font-weight: 500;
+      letter-spacing: .05em; text-transform: uppercase;
+      color: var(--white-dim); transition: color .18s;
+    }
+    nav a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--green); color: #09100a !important;
+      padding: .42rem 1rem; border-radius: 4px;
+    }
+    .nav-cta:hover { background: #4dcf5e !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px; transition: .3s;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: clamp(5rem,10vw,8rem) clamp(1rem,4vw,2.5rem) clamp(3rem,6vw,5rem);
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 55% at 65% 35%, rgba(58,181,74,.09) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 45% at 15% 80%, rgba(45,158,60,.06) 0%, transparent 60%);
+    }
+
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+      opacity: .04;
+    }
+    .hero-grid-lines::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--green) 1px, transparent 1px),
+        linear-gradient(90deg, var(--green) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-inner { max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--green);
+      border: 1px solid rgba(58,181,74,.35);
+      background: var(--green-dim);
+      padding: .3rem .85rem; border-radius: 20px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp .5s ease both;
+    }
+    .hero-pill::before { content: '●'; font-size: .5rem; }
+
+    .hero h1 {
+      font-size: clamp(2.6rem,6.5vw,5.2rem);
+      font-weight: 700; line-height: 1.06; letter-spacing: -.04em;
+      max-width: 860px;
+      animation: fadeUp .5s .08s ease both;
+    }
+    .hero h1 .hl { color: var(--green); }
+
+    .hero-sub {
+      max-width: 520px; color: var(--white-dim);
+      font-size: 1rem; font-weight: 300; line-height: 1.75;
+      margin-top: 1.4rem;
+      animation: fadeUp .5s .16s ease both;
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      animation: fadeUp .5s .24s ease both;
+      flex-wrap: wrap;
+    }
+    .stat { }
+    .stat-num {
+      font-size: 2rem; font-weight: 700; letter-spacing: -.04em;
+      color: var(--green); line-height: 1;
+    }
+    .stat-lbl {
+      font-size: .75rem; color: var(--white-dim);
+      font-weight: 400; margin-top: .25rem;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .stat-div { width: 1px; background: var(--border2); align-self: stretch; }
+
+    /* ─────────────────────────────────────────
+       CATEGORY BAR
+    ───────────────────────────────────────── */
+    .cat-bar {
+      padding: .5rem clamp(1rem,4vw,2.5rem) 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+    .cat-bar-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+    .cat-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white-dim);
+      font-family: var(--font);
+      font-size: .75rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .38rem .95rem; border-radius: 20px;
+      cursor: pointer; transition: all .18s;
+    }
+    .cat-btn:hover { border-color: var(--green); color: var(--white); }
+    .cat-btn.active { background: var(--green); border-color: var(--green); color: #09100a; }
+
+    /* ─────────────────────────────────────────
+       SECTION LABEL
+    ───────────────────────────────────────── */
+    .sec-label {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: .8rem;
+      margin-bottom: 1.6rem;
+    }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ─────────────────────────────────────────
+       FEATURED CARD
+    ───────────────────────────────────────── */
+    .featured-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2.5rem) 4rem;
+    }
+
+    .featured-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      cursor: pointer;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .featured-card:hover {
+      border-color: var(--green2);
+      box-shadow: 0 0 40px rgba(58,181,74,.08);
+      transform: translateY(-2px);
+    }
+
+    .fc-img {
+      min-height: 380px; background: var(--surface2);
+      position: relative; overflow: hidden;
+    }
+    .fc-img svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .fc-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(58,181,74,.12), transparent 60%);
+    }
+
+    .fc-body {
+      padding: clamp(2rem,4vw,3rem);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .art-cat {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); margin-bottom: .9rem;
+    }
+
+    .fc-body h2 {
+      font-size: clamp(1.5rem,2.8vw,2.2rem);
+      font-weight: 700; line-height: 1.18; letter-spacing: -.025em;
+      margin-bottom: .9rem;
+    }
+
+    .fc-body p { color: var(--white-dim); font-size: .92rem; line-height: 1.72; }
+
+    .art-meta {
+      font-size: .74rem; color: var(--muted);
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .read-more {
+      display: inline-flex; align-items: center; gap: .45rem;
+      color: var(--green); font-size: .82rem; font-weight: 600;
+      margin-top: 1.4rem; transition: gap .18s;
+    }
+    .read-more:hover { gap: .75rem; }
+
+    /* ─────────────────────────────────────────
+       ARTICLE GRID
+    ───────────────────────────────────────── */
+    .grid-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2.5rem) 5rem;
+    }
+
+    .art-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .art-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden; cursor: pointer;
+      display: flex; flex-direction: column;
+      transition: border-color .22s, transform .22s, box-shadow .22s;
+    }
+    .art-card:hover {
+      border-color: var(--green2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+
+    .card-thumb {
+      height: 175px; background: var(--surface2);
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .card-thumb svg { width: 100%; height: 100%; }
+
+    .card-body {
+      padding: 1.3rem; flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .card-body h3 {
+      font-size: 1.05rem; font-weight: 600;
+      line-height: 1.3; letter-spacing: -.015em;
+      margin-bottom: .6rem;
+    }
+    .card-body p {
+      color: var(--white-dim); font-size: .84rem;
+      line-height: 1.65; flex: 1; margin-bottom: .9rem;
+    }
+    .card-foot {
+      font-size: .72rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: .85rem; margin-top: auto;
+      display: flex; justify-content: space-between;
+    }
+
+    /* ─────────────────────────────────────────
+       NEWSLETTER STRIP
+    ───────────────────────────────────────── */
+    .nl-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2.5rem) 5rem;
+    }
+    .nl-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: clamp(2rem,4vw,2.8rem);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .nl-text h3 {
+      font-size: 1.25rem; font-weight: 700;
+      letter-spacing: -.02em; margin-bottom: .4rem;
+    }
+    .nl-text p { color: var(--white-dim); font-size: .88rem; }
+    .nl-form { display: flex; gap: .7rem; flex-wrap: wrap; }
+    .nl-form input {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--white); font-family: var(--font);
+      font-size: .88rem; padding: .65rem 1rem;
+      border-radius: 4px; outline: none; min-width: 240px;
+      transition: border-color .18s;
+    }
+    .nl-form input::placeholder { color: var(--muted); }
+    .nl-form input:focus { border-color: var(--green); }
+    .nl-form button {
+      background: var(--green); color: #09100a;
+      font-family: var(--font); font-weight: 600;
+      font-size: .85rem; padding: .65rem 1.3rem;
+      border: none; border-radius: 4px; cursor: pointer;
+      transition: background .18s;
+    }
+    .nl-form button:hover { background: #4dcf5e; }
+
+    /* ─────────────────────────────────────────
+       TAIRO BANNER
+    ───────────────────────────────────────── */
+    .tairo-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 0 clamp(1rem,4vw,2.5rem) 5rem;
+    }
+    .tairo-inner {
+      background: linear-gradient(120deg, var(--surface2) 0%, rgba(58,181,74,.07) 100%);
+      border: 1px solid var(--green2);
+      border-radius: 10px;
+      padding: clamp(2rem,4vw,2.8rem);
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+      align-items: center;
+    }
+    .tairo-badge {
+      display: inline-block; font-size: .66rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      padding: .22rem .7rem; border-radius: 20px; margin-bottom: .8rem;
+    }
+    .tairo-inner h3 {
+      font-size: clamp(1.2rem,2.5vw,1.7rem);
+      font-weight: 700; letter-spacing: -.025em; margin-bottom: .6rem;
+    }
+    .tairo-inner p { color: var(--white-dim); font-size: .88rem; max-width: 600px; }
+    .tairo-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--green); color: #09100a;
+      font-family: var(--font); font-weight: 600; font-size: .85rem;
+      padding: .8rem 1.6rem; border-radius: 4px; white-space: nowrap;
+      transition: background .18s, transform .18s;
+    }
+    .tairo-btn:hover { background: #4dcf5e; transform: scale(1.03); }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem clamp(1rem,4vw,2.5rem) 2rem;
+    }
+    .foot-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem; padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .foot-brand .logo { font-size: 1.2rem; display: inline-block; margin-bottom: .8rem; }
+    .foot-brand p { color: var(--muted); font-size: .82rem; max-width: 260px; line-height: 1.6; }
+    .foot-col h4 {
+      font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1rem;
+    }
+    .foot-col ul { list-style: none; }
+    .foot-col ul li { margin-bottom: .45rem; }
+    .foot-col ul li a { color: var(--muted); font-size: .82rem; transition: color .18s; cursor: pointer; }
+    .foot-col ul li a:hover { color: var(--white); }
+    .foot-bottom {
+      max-width: 1240px; margin: 1.5rem auto 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .foot-bottom p { color: var(--muted); font-size: .76rem; }
+    .foot-bottom a { color: var(--green); }
+
+    /* ─────────────────────────────────────────
+       MODAL
+    ───────────────────────────────────────── */
+    .overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.88);
+      backdrop-filter: blur(8px);
+      display: none; align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem; overflow-y: auto;
+    }
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      max-width: 800px; width: 100%;
+      margin: auto;
+      padding: clamp(2rem,5vw,3.5rem);
+      position: relative;
+      animation: modalIn .3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--white-dim);
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; transition: all .18s;
+    }
+    .modal-close:hover { background: var(--green); color: #09100a; border-color: var(--green); }
+
+    .modal h2 {
+      font-size: clamp(1.6rem,3.5vw,2.4rem);
+      font-weight: 700; letter-spacing: -.03em; line-height: 1.15;
+      margin-bottom: .9rem;
+    }
+    .modal-meta {
+      color: var(--muted); font-size: .78rem;
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      padding-bottom: 1.5rem; margin-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-body { color: var(--white-dim); font-size: .94rem; line-height: 1.85; }
+    .modal-body p { margin-bottom: 1.1rem; }
+    .modal-body h3 {
+      font-family: var(--font); font-size: 1.1rem; font-weight: 700;
+      color: var(--white); margin: 2rem 0 .7rem; letter-spacing: -.02em;
+    }
+    .modal-tairo {
+      margin-top: 2.5rem;
+      padding: 1.4rem;
+      background: var(--surface2);
+      border-left: 3px solid var(--green);
+      border-radius: 0 6px 6px 0;
+    }
+    .modal-tairo p { color: var(--white-dim); font-size: .86rem; margin-bottom: .7rem; }
+    .modal-tairo a { color: var(--green); font-weight: 600; font-size: .86rem; }
+    .modal-tairo a:hover { text-decoration: underline; }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .fc-img { min-height: 260px; }
+      .art-grid { grid-template-columns: 1fr 1fr; }
+      .tairo-inner { grid-template-columns: 1fr; }
+      .foot-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .art-grid { grid-template-columns: 1fr; }
+      .foot-inner { grid-template-columns: 1fr; }
+      nav { display: none; }
+      nav.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--surface); padding: 1.5rem;
+        border-bottom: 1px solid var(--border); z-index: 99;
+      }
+      .hamburger { display: flex; }
+      .hero-stats { gap: 1.5rem; }
+      .stat-div { display: none; }
+      .nl-inner { flex-direction: column; }
+      .nl-form input { min-width: 0; width: 100%; }
+    }
+
+    /* hidden cards */
+    .art-card[data-hidden="true"] { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header>
+  <div class="hdr">
+    <div class="logo" onclick="showHome()">Infrastructu<span>RO</span></div>
+    <nav id="main-nav">
+      <a href="#articole" onclick="filterCat('toate')">Articole</a>
+      <a href="#articole" onclick="filterCat('autostrazi')">Autostrăzi</a>
+      <a href="#articole" onclick="filterCat('sustenabilitate')">Sustenabilitate</a>
+      <a href="#articole" onclick="filterCat('fonduri')">Fonduri EU</a>
+      <a href="https://www.tairo.ro" target="_blank" class="nav-cta">Tairo.ro ↗</a>
+    </nav>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-pill">Blog Național · Infrastructură Rutieră</div>
+    <h1>România în<br>mișcare — <span class="hl">azi</span><br>și mâine</h1>
+    <p class="hero-sub">Analize aprofundate, știri și perspective despre drumuri, autostrăzi și soluții sustenabile pentru infrastructura rutieră a României.</p>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">~1.000</div>
+        <div class="stat-lbl">km autostradă finalizată</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">27/27</div>
+        <div class="stat-lbl">loc în UE după densitate</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">€29 Mld</div>
+        <div class="stat-lbl">fonduri PNRR disponibile</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">7.8</div>
+        <div class="stat-lbl">decese/1M loc. (vs 4.5 UE)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CATEGORY BAR ════════════════ -->
+<div class="cat-bar" id="articole">
+  <div class="cat-bar-inner">
+    <button class="cat-btn active" onclick="filterCat('toate')">Toate</button>
+    <button class="cat-btn" onclick="filterCat('infrastructura')">Infrastructură Rutieră</button>
+    <button class="cat-btn" onclick="filterCat('autostrazi')">Autostrăzi</button>
+    <button class="cat-btn" onclick="filterCat('sustenabilitate')">Sustenabilitate</button>
+    <button class="cat-btn" onclick="filterCat('urban')">Urban</button>
+    <button class="cat-btn" onclick="filterCat('fonduri')">Fonduri EU</button>
+    <button class="cat-btn" onclick="filterCat('feroviar')">Feroviar</button>
+    <button class="cat-btn" onclick="filterCat('siguranta')">Siguranță</button>
+  </div>
+</div>
+
+<!-- ════════════════ FEATURED ════════════════ -->
+<div class="featured-wrap">
+  <div class="sec-label">Articol Recomandat</div>
+  <div class="featured-card reveal" onclick="openArticle('featured')">
+    <div class="fc-img">
+      <svg viewBox="0 0 620 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="sky0" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#060f07"/>
+            <stop offset="100%" stop-color="#182019"/>
+          </linearGradient>
+          <radialGradient id="glow0" cx="50%" cy="43%" r="35%">
+            <stop offset="0%" stop-color="#3ab54a" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#3ab54a" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="620" height="420" fill="url(#sky0)"/>
+        <rect width="620" height="420" fill="url(#glow0)"/>
+        <!-- Horizon -->
+        <rect x="0" y="260" width="620" height="160" fill="#111912"/>
+        <!-- Road perspective -->
+        <path d="M240 420 L290 200 L330 200 L380 420Z" fill="#0e1610"/>
+        <line x1="310" y1="200" x2="310" y2="420" stroke="#3ab54a" stroke-width="2" stroke-dasharray="14 10" opacity=".35"/>
+        <!-- Horizon glow -->
+        <ellipse cx="310" cy="200" rx="130" ry="14" fill="#3ab54a" opacity=".1"/>
+        <circle cx="310" cy="200" r="5" fill="#3ab54a" opacity=".7"/>
+        <!-- Mountains -->
+        <path d="M0 280 L100 200 L180 250 L260 180 L310 220 L360 175 L430 240 L520 195 L620 265 L620 280Z" fill="#131a14" opacity=".95"/>
+        <!-- Stars -->
+        <circle cx="60"  cy="50"  r="1.2" fill="#fff" opacity=".4"/>
+        <circle cx="130" cy="30"  r="1"   fill="#fff" opacity=".35"/>
+        <circle cx="210" cy="70"  r="1.4" fill="#fff" opacity=".45"/>
+        <circle cx="440" cy="40"  r="1.2" fill="#fff" opacity=".4"/>
+        <circle cx="530" cy="65"  r="1"   fill="#fff" opacity=".35"/>
+        <circle cx="580" cy="25"  r="1.5" fill="#fff" opacity=".5"/>
+        <circle cx="380" cy="90"  r="1"   fill="#fff" opacity=".3"/>
+        <circle cx="70"  cy="120" r="1"   fill="#3ab54a" opacity=".4"/>
+        <circle cx="550" cy="110" r="1"   fill="#3ab54a" opacity=".35"/>
+        <!-- Road lines at bottom -->
+        <rect x="0" y="400" width="620" height="20" fill="#0e1610"/>
+        <rect x="0" y="400" width="620" height="2" fill="#3ab54a" opacity=".2"/>
+      </svg>
+      <div class="fc-img-overlay"></div>
+    </div>
+    <div class="fc-body">
+      <div class="art-cat">Infrastructură Rutieră</div>
+      <h2>România și criza drumurilor naționale: unde suntem în 2025?</h2>
+      <p>România se confruntă cu una dintre cele mai scăzute densități de autostradă din Uniunea Europeană. Analizăm situația actuală, proiectele în desfășurare și provocările majore cu care se confruntă rețeaua rutieră națională.</p>
+      <div class="art-meta">
+        <span>15 Ianuarie 2025</span>
+        <span>·</span>
+        <span>8 min lectură</span>
+      </div>
+      <span class="read-more">Citește articolul →</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ARTICLE GRID ════════════════ -->
+<div class="grid-wrap">
+  <div class="sec-label">Toate Articolele</div>
+  <div class="art-grid" id="art-grid">
+
+    <!-- ─ A1 ─ -->
+    <div class="art-card reveal" data-cat="autostrazi" onclick="openArticle('a1')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <path d="M0 170 Q200 120 400 100" stroke="#3ab54a" stroke-width="2.5" fill="none" opacity=".4"/>
+          <rect x="110" y="60" width="7" height="90" fill="#182019" opacity=".9"/>
+          <rect x="283" y="60" width="7" height="90" fill="#182019" opacity=".9"/>
+          <path d="M110 60 Q200 18 290 60" stroke="#3ab54a" stroke-width="2" fill="none" opacity=".6"/>
+          <rect x="0" y="140" width="400" height="16" fill="#0e1610"/>
+          <rect x="0" y="140" width="400" height="2" fill="#3ab54a" opacity=".25"/>
+          <ellipse cx="200" cy="58" rx="80" ry="8" fill="#3ab54a" opacity=".06"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Autostrăzi</div>
+        <h3>Autostrada A3 – progres, întârzieri și speranțe pentru 2025</h3>
+        <p>A3 rămâne cel mai așteptat proiect de infrastructură din România. Analizăm sectoarele finalizate, cele blocate și perspectivele anilor următori.</p>
+        <div class="card-foot">
+          <span>28 Ian 2025</span><span>6 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A2 ─ -->
+    <div class="art-card reveal" data-cat="sustenabilitate" onclick="openArticle('a2')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <circle cx="200" cy="200" r="170" fill="#182019" opacity=".5"/>
+          <path d="M200 40 L220 78 L185 78Z" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".8"/>
+          <path d="M158 112 L135 74 L168 74" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".8"/>
+          <path d="M242 112 L265 74 L232 74" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".8"/>
+          <circle cx="200" cy="110" r="20" fill="none" stroke="#3ab54a" stroke-width="1.5" opacity=".5"/>
+          <circle cx="200" cy="110" r="7" fill="#3ab54a" opacity=".5"/>
+          <circle cx="75" cy="35" r="2" fill="#3ab54a" opacity=".35"/>
+          <circle cx="335" cy="50" r="1.5" fill="#3ab54a" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Sustenabilitate</div>
+        <h3>Cauciuc reciclat în infrastructură: revoluția verde a drumurilor românești</h3>
+        <p>Materialele din cauciuc reciclat transformă echipamentele rutiere. De la bolarzi la limitatoare de viteză, sustenabilitatea devine standard.</p>
+        <div class="card-foot">
+          <span>5 Feb 2025</span><span>5 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A3 ─ -->
+    <div class="art-card reveal" data-cat="fonduri" onclick="openArticle('a3')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#0d1015"/>
+          <circle cx="200" cy="90" r="70" fill="none" stroke="#3ab54a" stroke-width=".8" opacity=".25"/>
+          <circle cx="200" cy="90" r="50" fill="none" stroke="#3ab54a" stroke-width=".5" opacity=".15"/>
+          <!-- EU stars -->
+          <g fill="#3ab54a" opacity=".65">
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="scale(.55) translate(163,0)"/>
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="rotate(30,200,90) scale(.55) translate(163,0)"/>
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="rotate(60,200,90) scale(.55) translate(163,0)"/>
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="rotate(90,200,90) scale(.55) translate(163,0)"/>
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="rotate(120,200,90) scale(.55) translate(163,0)"/>
+            <polygon points="200,26 202.5,33 210,33 204,37.5 206.5,44.5 200,40 193.5,44.5 196,37.5 190,33 197.5,33" transform="rotate(150,200,90) scale(.55) translate(163,0)"/>
+          </g>
+          <circle cx="200" cy="90" r="5" fill="#3ab54a" opacity=".55"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Fonduri EU</div>
+        <h3>PNRR și infrastructura: miliardele europene și absorbția lor în România</h3>
+        <p>România are la dispoziție fonduri europene istorice pentru modernizarea infrastructurii. Câți bani s-au accesat și care sunt blocajele?</p>
+        <div class="card-foot">
+          <span>12 Feb 2025</span><span>7 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A4 ─ -->
+    <div class="art-card reveal" data-cat="urban" onclick="openArticle('a4')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Skyline -->
+          <rect x="20"  y="100" width="28" height="68" fill="#182019"/>
+          <rect x="58"  y="78"  width="38" height="90" fill="#131a14"/>
+          <rect x="106" y="108" width="22" height="60" fill="#182019"/>
+          <rect x="138" y="68"  width="48" height="100" fill="#131a14"/>
+          <rect x="196" y="88"  width="32" height="80" fill="#182019"/>
+          <rect x="238" y="56"  width="44" height="112" fill="#131a14"/>
+          <rect x="292" y="98"  width="28" height="70" fill="#182019"/>
+          <rect x="330" y="82"  width="34" height="86" fill="#131a14"/>
+          <rect x="374" y="95"  width="26" height="73" fill="#182019"/>
+          <!-- Windows -->
+          <g fill="#3ab54a" opacity=".28">
+            <rect x="27"  y="108" width="6" height="6" rx="1"/>
+            <rect x="27"  y="120" width="6" height="6" rx="1"/>
+            <rect x="66"  y="86"  width="6" height="6" rx="1"/>
+            <rect x="76"  y="86"  width="6" height="6" rx="1"/>
+            <rect x="66"  y="100" width="6" height="6" rx="1"/>
+            <rect x="146" y="78"  width="7" height="7" rx="1"/>
+            <rect x="158" y="78"  width="7" height="7" rx="1"/>
+            <rect x="146" y="92"  width="7" height="7" rx="1"/>
+            <rect x="158" y="92"  width="7" height="7" rx="1"/>
+            <rect x="244" y="65"  width="7" height="7" rx="1"/>
+            <rect x="258" y="65"  width="7" height="7" rx="1"/>
+            <rect x="244" y="80"  width="7" height="7" rx="1"/>
+          </g>
+          <rect x="0"   y="158" width="400" height="22" fill="#0e1610"/>
+          <rect x="0"   y="158" width="400" height="2"  fill="#3ab54a" opacity=".2"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Urban</div>
+        <h3>Orașe inteligente: Cluj și București redefinesc mobilitatea urbană</h3>
+        <p>Sisteme de management al traficului, piste de biciclete și zone pietonale transformă orașele românești. Ce funcționează și ce mai trebuie?</p>
+        <div class="card-foot">
+          <span>20 Feb 2025</span><span>6 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A5 ─ -->
+    <div class="art-card reveal" data-cat="siguranta" onclick="openArticle('a5')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <path d="M155 10 L245 10 L340 180 L60 180Z" fill="#0e1610"/>
+          <line x1="200" y1="10" x2="200" y2="180" stroke="#3ab54a" stroke-width="2" stroke-dasharray="12 9" opacity=".35"/>
+          <rect x="72"  y="110" width="9" height="48" rx="3" fill="#3ab54a" opacity=".65"/>
+          <rect x="72"  y="105" width="9" height="9"  rx="2" fill="#eef5ef" opacity=".4"/>
+          <rect x="319" y="110" width="9" height="48" rx="3" fill="#3ab54a" opacity=".65"/>
+          <rect x="319" y="105" width="9" height="9"  rx="2" fill="#eef5ef" opacity=".4"/>
+          <defs>
+            <linearGradient id="roadfade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#182019" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#182019" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="130" width="400" height="50" fill="url(#roadfade)"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Siguranță Rutieră</div>
+        <h3>Siguranța rutieră în România: statistici, cauze și soluții concrete</h3>
+        <p>România are una din cele mai ridicate rate de mortalitate rutieră din UE. Ce măsuri de infrastructură pot schimba aceste cifre sumbre?</p>
+        <div class="card-foot">
+          <span>1 Mar 2025</span><span>9 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A6 ─ -->
+    <div class="art-card reveal" data-cat="sustenabilitate" onclick="openArticle('a6')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <circle cx="200" cy="100" r="90" fill="#162614" opacity=".5"/>
+          <path d="M200 30 Q242 62 224 108 Q200 128 176 108 Q158 62 200 30Z" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".65"/>
+          <line x1="200" y1="30" x2="200" y2="125" stroke="#3ab54a" stroke-width="1.5" opacity=".45"/>
+          <line x1="200" y1="62" x2="220" y2="78" stroke="#3ab54a" stroke-width="1" opacity=".4"/>
+          <line x1="200" y1="82" x2="182" y2="96" stroke="#3ab54a" stroke-width="1" opacity=".4"/>
+          <!-- Solar panels -->
+          <rect x="72"  y="140" width="46" height="22" rx="2" fill="#182019" stroke="#3ab54a" stroke-width=".8" opacity=".55"/>
+          <rect x="128" y="140" width="46" height="22" rx="2" fill="#182019" stroke="#3ab54a" stroke-width=".8" opacity=".55"/>
+          <rect x="226" y="140" width="46" height="22" rx="2" fill="#182019" stroke="#3ab54a" stroke-width=".8" opacity=".55"/>
+          <rect x="282" y="140" width="46" height="22" rx="2" fill="#182019" stroke="#3ab54a" stroke-width=".8" opacity=".55"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Sustenabilitate</div>
+        <h3>Infrastructura verde: soluții ecologice pentru drumurile României</h3>
+        <p>De la materiale reciclate la panouri solare pe marginea autostrăzilor, infrastructura verde nu mai e un lux — e o necesitate economică.</p>
+        <div class="card-foot">
+          <span>10 Mar 2025</span><span>5 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A7 – NOU ─ -->
+    <div class="art-card reveal" data-cat="feroviar" onclick="openArticle('a7')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Rail tracks -->
+          <line x1="170" y1="0"   x2="120" y2="180" stroke="#3ab54a" stroke-width="3" opacity=".5"/>
+          <line x1="230" y1="0"   x2="280" y2="180" stroke="#3ab54a" stroke-width="3" opacity=".5"/>
+          <!-- Sleepers -->
+          <g stroke="#182019" stroke-width="8" opacity=".9">
+            <line x1="168" y1="10"  x2="232" y2="10"/>
+            <line x1="163" y1="35"  x2="237" y2="35"/>
+            <line x1="158" y1="62"  x2="242" y2="62"/>
+            <line x1="153" y1="90"  x2="247" y2="90"/>
+            <line x1="147" y1="120" x2="253" y2="120"/>
+            <line x1="140" y1="152" x2="260" y2="152"/>
+          </g>
+          <ellipse cx="200" cy="0" rx="60" ry="10" fill="#3ab54a" opacity=".1"/>
+          <circle cx="200" cy="2" r="4" fill="#3ab54a" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Feroviar</div>
+        <h3>CFR Infrastructură: starea rețelei feroviare române în 2025</h3>
+        <p>Trenuri cu viteze maxime de 50 km/h pe unele tronsoane, întârzieri cronice și zeci de poduri cu restricții. Feroviarul român, o urgență națională.</p>
+        <div class="card-foot">
+          <span>18 Mar 2025</span><span>8 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A8 – NOU ─ -->
+    <div class="art-card reveal" data-cat="autostrazi" onclick="openArticle('a8')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Map-like lines suggesting Moldova motorway -->
+          <path d="M200 0 Q210 60 230 90 Q260 130 280 180" stroke="#3ab54a" stroke-width="3" fill="none" opacity=".55"/>
+          <path d="M200 0 Q190 60 175 90 Q155 130 140 180" stroke="#3ab54a" stroke-width="1.5" fill="none" opacity=".25" stroke-dasharray="8 6"/>
+          <!-- Nodes / cities -->
+          <circle cx="200" cy="2"   r="5" fill="#3ab54a" opacity=".8"/>
+          <circle cx="225" cy="68"  r="4" fill="#3ab54a" opacity=".6"/>
+          <circle cx="245" cy="112" r="4" fill="#3ab54a" opacity=".5"/>
+          <circle cx="264" cy="150" r="3" fill="#3ab54a" opacity=".4"/>
+          <!-- Labels suggestion -->
+          <rect x="210" y="0"   width="50" height="12" rx="3" fill="#182019" opacity=".7"/>
+          <rect x="232" y="64"  width="40" height="10" rx="3" fill="#182019" opacity=".6"/>
+          <rect x="250" y="108" width="44" height="10" rx="3" fill="#182019" opacity=".55"/>
+          <!-- green glow -->
+          <ellipse cx="200" cy="90" rx="120" ry="80" fill="#3ab54a" opacity=".03"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Autostrăzi</div>
+        <h3>Autostrada A7 Moldova: promisiunile, realitatea și termenele</h3>
+        <p>A7 urmează să lege Ploiești de Pașcani și să conecteze Moldova la rețeaua de autostrăzi. Cât de aproape sau departe suntem de finalizare?</p>
+        <div class="card-foot">
+          <span>25 Mar 2025</span><span>7 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A9 – NOU ─ -->
+    <div class="art-card reveal" data-cat="siguranta" onclick="openArticle('a9')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Shield -->
+          <path d="M200 20 L255 45 L255 100 Q255 140 200 160 Q145 140 145 100 L145 45 Z" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".6"/>
+          <path d="M200 40 L238 58 L238 102 Q238 130 200 145 Q162 130 162 102 L162 58 Z" fill="#182019" opacity=".5"/>
+          <!-- Checkmark inside shield -->
+          <polyline points="180,95 195,112 222,78" stroke="#3ab54a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+          <circle cx="110" cy="40" r="2" fill="#3ab54a" opacity=".35"/>
+          <circle cx="295" cy="55" r="2" fill="#3ab54a" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Siguranță Rutieră</div>
+        <h3>Barierele de protecție din cauciuc: alternative moderne la beton</h3>
+        <p>Barierele de separare din cauciuc reciclat absorb mai bine impactul, sunt mai ușoare și mai ușor de înlocuit. De ce le adoptăm atât de greu?</p>
+        <div class="card-foot">
+          <span>2 Apr 2025</span><span>5 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A10 – NOU ─ -->
+    <div class="art-card reveal" data-cat="fonduri" onclick="openArticle('a10')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Bar chart -->
+          <g opacity=".7">
+            <rect x="55"  y="110" width="34" height="55" rx="3" fill="#182019" stroke="#3ab54a" stroke-width=".8"/>
+            <rect x="103" y="80"  width="34" height="85" rx="3" fill="#182019" stroke="#3ab54a" stroke-width=".8"/>
+            <rect x="151" y="50"  width="34" height="115" rx="3" fill="#3ab54a" opacity=".35"/>
+            <rect x="199" y="65"  width="34" height="100" rx="3" fill="#182019" stroke="#3ab54a" stroke-width=".8"/>
+            <rect x="247" y="90"  width="34" height="75" rx="3" fill="#182019" stroke="#3ab54a" stroke-width=".8"/>
+            <rect x="295" y="35"  width="34" height="130" rx="3" fill="#3ab54a" opacity=".5"/>
+          </g>
+          <line x1="40" y1="165" x2="360" y2="165" stroke="#3ab54a" stroke-width="1" opacity=".2"/>
+          <line x1="40" y1="165" x2="40"  y2="20"  stroke="#3ab54a" stroke-width="1" opacity=".2"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Fonduri EU</div>
+        <h3>Absorbția fondurilor europene: județ cu județ, cine performează?</h3>
+        <p>Nu toate județele României accesează la fel fondurile europene pentru infrastructură. O radiografie a disparităților regionale și a cauzelor lor.</p>
+        <div class="card-foot">
+          <span>10 Apr 2025</span><span>6 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A11 – NOU ─ -->
+    <div class="art-card reveal" data-cat="urban" onclick="openArticle('a11')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- Bicycle icon -->
+          <circle cx="145" cy="115" r="38" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <circle cx="255" cy="115" r="38" fill="none" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <circle cx="145" cy="115" r="5" fill="#3ab54a" opacity=".6"/>
+          <circle cx="255" cy="115" r="5" fill="#3ab54a" opacity=".6"/>
+          <!-- Frame -->
+          <line x1="145" y1="115" x2="200" y2="75" stroke="#3ab54a" stroke-width="2.5" opacity=".65"/>
+          <line x1="200" y1="75" x2="255" y2="115" stroke="#3ab54a" stroke-width="2.5" opacity=".65"/>
+          <line x1="200" y1="75" x2="200" y2="115" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <line x1="145" y1="115" x2="200" y2="115" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <!-- Handlebars -->
+          <line x1="200" y1="75" x2="220" y2="68" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <line x1="214" y1="65" x2="228" y2="65" stroke="#3ab54a" stroke-width="2" opacity=".45"/>
+          <!-- Seat -->
+          <line x1="200" y1="75" x2="185" y2="72" stroke="#3ab54a" stroke-width="2" opacity=".5"/>
+          <line x1="180" y1="69" x2="192" y2="69" stroke="#3ab54a" stroke-width="2" opacity=".45"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Urban</div>
+        <h3>Pistele de biciclete în România: progres timid față de media europeană</h3>
+        <p>Rețelele de ciclism urban din România cresc, dar rămân fragmentate. Cum arată situația în principalele orașe și ce lipsește pentru o rețea coerentă?</p>
+        <div class="card-foot">
+          <span>18 Apr 2025</span><span>5 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ A12 – NOU ─ -->
+    <div class="art-card reveal" data-cat="sustenabilitate" onclick="openArticle('a12')">
+      <div class="card-thumb">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#111912"/>
+          <!-- CO2 down arrow -->
+          <text x="155" y="80" font-family="Geist,sans-serif" font-size="28" font-weight="700" fill="#3ab54a" opacity=".55">CO₂</text>
+          <!-- Arrow down -->
+          <line x1="200" y1="95" x2="200" y2="148" stroke="#3ab54a" stroke-width="3" opacity=".65"/>
+          <polyline points="183,133 200,153 217,133" stroke="#3ab54a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+          <!-- Circle -->
+          <circle cx="200" cy="90" r="70" fill="none" stroke="#3ab54a" stroke-width=".8" opacity=".18"/>
+          <!-- dots -->
+          <circle cx="80"  cy="35"  r="2" fill="#3ab54a" opacity=".3"/>
+          <circle cx="330" cy="45"  r="2" fill="#3ab54a" opacity=".3"/>
+          <circle cx="60"  cy="140" r="1.5" fill="#3ab54a" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="art-cat">Sustenabilitate</div>
+        <h3>Reducerea emisiilor în transport: ce poate face România până în 2030</h3>
+        <p>Sectorul transport este responsabil pentru ~25% din emisiile de CO₂ ale României. Electrificarea, materialele reciclate și transportul în comun pot face diferența.</p>
+        <div class="card-foot">
+          <span>26 Apr 2025</span><span>6 min</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /art-grid -->
+</div><!-- /grid-wrap -->
+
+<!-- ════════════════ NEWSLETTER ════════════════ -->
+<div class="nl-wrap reveal">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h3>Rămâi la curent cu infrastructura României</h3>
+      <p>Articole noi în fiecare săptămână. Fără spam, doar analize și știri relevante.</p>
+    </div>
+    <div class="nl-form">
+      <input type="email" placeholder="adresa@email.ro" id="nl-email"/>
+      <button onclick="nlSubmit()">Abonează-te</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TAIRO BANNER ════════════════ -->
+<div class="tairo-wrap reveal">
+  <div class="tairo-inner">
+    <div>
+      <span class="tairo-badge">Partener Sustenabil</span>
+      <h3>Produse de infrastructură din cauciuc reciclat — fabricate în România</h3>
+      <p>Tairo Safety produce limitatoare de viteză, bolarzi, bariere New Jersey și soluții complete pentru drumuri și parcări — toate din peste 90% cauciuc reciclat. Siguranță rutieră cu impact minim asupra mediului, fabricate în județul Mureș.</p>
+    </div>
+    <a href="https://www.tairo.ro" target="_blank" class="tairo-btn">Descoperă Tairo.ro ↗</a>
+  </div>
+</div>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="logo">Infrastructu<span>RO</span></div>
+      <p>Blogul dedicat infrastructurii rutiere din România — analize, tendințe și soluții sustenabile pentru drumurile de mâine.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Categorii</h4>
+      <ul>
+        <li><a onclick="filterCat('infrastructura')">Infrastructură Rutieră</a></li>
+        <li><a onclick="filterCat('autostrazi')">Autostrăzi</a></li>
+        <li><a onclick="filterCat('sustenabilitate')">Sustenabilitate</a></li>
+        <li><a onclick="filterCat('feroviar')">Feroviar</a></li>
+        <li><a onclick="filterCat('urban')">Urban</a></li>
+        <li><a onclick="filterCat('fonduri')">Fonduri EU</a></li>
+        <li><a onclick="filterCat('siguranta')">Siguranță Rutieră</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Linkuri Utile</h4>
+      <ul>
+        <li><a href="https://www.tairo.ro" target="_blank">Tairo.ro</a></li>
+        <li><a href="https://www.cnair.ro" target="_blank">CNAIR</a></li>
+        <li><a href="https://www.mt.ro" target="_blank">Min. Transporturilor</a></li>
+        <li><a href="https://www.cfr.ro" target="_blank">CFR Infrastructură</a></li>
+        <li><a href="https://www.politiarutiera.ro" target="_blank">Poliția Rutieră</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 InfrastructuRO. Toate drepturile rezervate.</p>
+    <p>Susținut de <a href="https://www.tairo.ro" target="_blank">Tairo.ro</a> — Soluții sustenabile de infrastructură</p>
+  </div>
+</footer>
+
+<!-- ════════════════ MODAL ════════════════ -->
+<div class="overlay" id="overlay" onclick="closeOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ════════════════ SCRIPTS ════════════════ -->
+<script>
+// ── ARTICLES DATA ──────────────────────────────
+const A = {
+  featured: {
+    cat:'Infrastructură Rutieră', date:'15 Ianuarie 2025', time:'8 min lectură', author:'Redacția InfrastructuRO',
+    title:'România și criza drumurilor naționale: unde suntem în 2025?',
+    body:`<p>România deține una dintre cele mai scăzute densități de autostradă din Uniunea Europeană, cu aproximativ 1.000 km de autostradă finalizată, față de o medie europeană care depășește cu mult această cifră. Această realitate se traduce direct în timp pierdut, accidente evitabile și costuri economice imense.</p>
+<h3>Situația actuală</h3>
+<p>Rețeaua de drumuri naționale din România se confruntă cu un deficit structural acumulat în ultimele decenii. Poduri care depășesc limita de vârstă, benzi de rulare deteriorate și lipsuri majore în semnalizare verticală și orizontală sunt probleme frecvente pe DN-uri. Conform datelor CNAIR, un procent semnificativ din drumurile naționale se află în stare mediocră sau precară.</p>
+<p>Totuși, există și vești bune: mai multe proiecte de autostradă sunt în diferite stadii de execuție, iar fondurile europene din PNRR și din fonduri de coeziune pot accelera semnificativ ritmul construcției. Autostrada A1, A3, A6, A7 și A8 (Moldova) sunt proiecte la care se lucrează intens.</p>
+<h3>Provocările majore</h3>
+<p>Principalele obstacole rămân birocrația excesivă în achiziții publice, lipsa personalului tehnic calificat în instituțiile statului, exproprierile întârziate și contestațiile juridice. La acestea se adaugă capacitatea administrativă limitată a CNAIR de a gestiona simultan un număr mare de contracte de construcție.</p>
+<h3>Perspective pentru 2025–2030</h3>
+<p>Dacă ritmul actual se menține și se îmbunătățește capacitatea de absorbție a fondurilor europene, România ar putea ajunge la aproximativ 2.000 km de autostradă până în 2030. Nu este suficient pentru standardele UE, dar ar reprezenta un progres remarcabil față de deceniile anterioare.</p>`,
+    tairo:'Echipamentele rutiere sustenabile — de la bolarzi la bariere de protecție din cauciuc reciclat — joacă un rol esențial în modernizarea și siguranța drumurilor naționale. Descoperă soluțiile Tairo pentru infrastructură durabilă.'
+  },
+  a1: {
+    cat:'Autostrăzi', date:'28 Ianuarie 2025', time:'6 min lectură', author:'Redacția InfrastructuRO',
+    title:'Autostrada A3 – progres, întârzieri și speranțe pentru 2025',
+    body:`<p>Autostrada A3, cunoscuta ca Autostrada Transilvania, este unul dintre cele mai ambițioase și complexe proiecte de infrastructură din istoria României. Traversează Carpații și urmează să lege Bucureștiul de granița cu Ungaria prin inima Ardealului.</p>
+<h3>Sectoarele finalizate</h3>
+<p>Porțiunea dintre București și Câmpia Turzii este în mare parte funcțională. Sectorul din jurul Câmpiei Turzii până la Gilău a cunoscut progrese vizibile în ultimii ani, cu deschideri parțiale care au redus presiunea pe DN1.</p>
+<h3>Sectoarele blocate</h3>
+<p>Cel mai dificil tronson rămâne cel de munte, prin tunelul de la Meseș și trecerea peste Carpații Apuseni. Lucrările în zone montane presupun dificultăți tehnice majore, costuri ridicate și riscuri geotehnice care au dus la revizuiri de proiect și întârzieri repetate.</p>
+<h3>Speranțe pentru 2025</h3>
+<p>Autoritățile estimează deschiderea unor noi tronsoane pe parcursul anului 2025, însă experiența anterioară ne îndeamnă la o doză sănătoasă de scepticism. Cheia stă în capacitatea constructorilor de a respecta graficele și în fermitatea CNAIR de a penaliza întârzierile nejustificate.</p>`,
+    tairo:'Pe toate șantierele mari de autostradă din România, echipamentele de siguranță rutieră sunt esențiale. Tairo produce balize, bolarzi și bariere din cauciuc reciclat, ideale pentru delimitarea zonelor de lucru și protecția lucrătorilor.'
+  },
+  a2: {
+    cat:'Sustenabilitate', date:'5 Februarie 2025', time:'5 min lectură', author:'Redacția InfrastructuRO',
+    title:'Cauciuc reciclat în infrastructură: revoluția verde a drumurilor românești',
+    body:`<p>Industria de reciclare a cauciucului a deschis un nou capitol în istoria infrastructurii rutiere. Milioane de anvelope scoase din uz sunt transformate anual în produse durabile care servesc drumurile, parcările și spațiile industriale din toată lumea.</p>
+<h3>De ce cauciuc reciclat?</h3>
+<p>Materialele din cauciuc reciclat prezintă avantaje clare față de alternativele tradiționale din beton sau metal: sunt mai ușoare, absorb impactul mai bine, rezistă la condiții climatice extreme și nu ruginesc. Mai important, produc o amprentă de carbon semnificativ mai mică, contribuind la obiectivele de neutralitate climatică ale UE.</p>
+<h3>Aplicații în infrastructura rutieră</h3>
+<p>Bolarzii, limitatoarele de viteză, barierele de separare, balizele direcționale și protecțiile de colț sunt câteva dintre produsele care pot fi fabricate integral din cauciuc reciclat. Aceste echipamente sunt esențiale în orice parcare, intersecție amenajată sau zonă industrială modernă.</p>
+<h3>România pe harta sustenabilității rutiere</h3>
+<p>Producători locali precum Tairo Safety din județul Mureș demonstrează că România poate fi competitivă pe piața produselor sustenabile de infrastructură. Cu peste 90% cauciuc reciclat în compoziție, produsele lor combină rezistența cu responsabilitatea față de mediu.</p>`,
+    tairo:'Tairo Safety este un producător român de soluții de infrastructură rutieră din cauciuc reciclat. De la limitatoare de viteză la bariere New Jersey, toate produsele lor sunt fabricate cu grijă față de mediu și cu durabilitate garantată.'
+  },
+  a3: {
+    cat:'Fonduri EU', date:'12 Februarie 2025', time:'7 min lectură', author:'Redacția InfrastructuRO',
+    title:'PNRR și infrastructura: miliardele europene și absorbția lor în România',
+    body:`<p>România a primit prin PNRR una dintre cele mai mari alocări europene din istoria sa — aproximativ 29 miliarde de euro, din care o parte consistentă vizează modernizarea infrastructurii de transport.</p>
+<h3>Ce presupun reformele din PNRR pentru infrastructură</h3>
+<p>Printre jaloanele și țintele asumate de România se numără modernizarea unor tronsoane de cale ferată, construcția de autostrăzi și drumuri expres, modernizarea stațiilor de transport public și crearea de conexiuni intermodale. Ritmul implementării este monitorizat atent de Comisia Europeană.</p>
+<h3>Blocajele identificate</h3>
+<p>Capacitatea administrativă rămâne principala problemă. Ministerul Transporturilor, CNAIR și autoritățile locale se confruntă cu lipsă de personal specializat, proceduri de achiziție complexe și contestații frecvente la licitații.</p>
+<h3>Riscul pierderii fondurilor</h3>
+<p>Fondurile PNRR nu sunt garantate — ele se acordă pe baza îndeplinirii jaloanelor stabilite. Nerespectarea termenelor poate duce la pierderea parțială a finanțării, un scenariu pe care România trebuie să-l evite cu orice preț.</p>`,
+    tairo:'Proiectele de infrastructură finanțate prin fonduri europene necesită echipamente de calitate certificată. Produsele Tairo Safety sunt ideale pentru infrastructura modernă, combinând standardele europene cu producția locală sustenabilă.'
+  },
+  a4: {
+    cat:'Urban', date:'20 Februarie 2025', time:'6 min lectură', author:'Redacția InfrastructuRO',
+    title:'Orașe inteligente: cum redefinesc Cluj și București mobilitatea urbană',
+    body:`<p>Transformarea mobilității urbane nu mai este o aspirație de viitor — este un proces în curs în câteva dintre marile orașe ale României. Cluj-Napoca și București conduc această schimbare, deși cu abordări și viteze diferite.</p>
+<h3>Cluj-Napoca: modelul de referință</h3>
+<p>Clujul a investit consistent în extinderea rețelei de transport public, în sisteme de biletare electronică și în amenajarea de infrastructură pentru ciclism. Programele de restricționare a traficului în centru și parcările de tip park & ride au redus congestionarea în anumite zone.</p>
+<h3>București: dimensiune vs. viteză</h3>
+<p>Capitala se confruntă cu provocări de o altă magnitudine. Rețeaua de metrou, deși extinsă în ultimii ani, rămâne insuficientă pentru o metropolă de 2 milioane de locuitori. Proiectele de modernizare a troielor, tramvaielor și autobuzelor avansează, dar lent.</p>
+<h3>Tendințe comune: zona 30 și pietonizarea</h3>
+<p>Ambele orașe experimentează zone cu limita de 30 km/h și proiecte de pietonizare a unor artere centrale. Aceste măsuri, susținute de infrastructură adecvată — inclusiv separatoare rutiere, bolarzi și marcaje clare — sunt esențiale pentru siguranța pietonilor și cicliștilor.</p>`,
+    tairo:'În amenajarea urbană modernă, separatoarele și bolarzii din cauciuc reciclat oferă soluții flexibile, sigure și estetice. Tairo Safety produce o gamă completă de echipamente potrivite pentru zone pietonale, piste de biciclete și parcări.'
+  },
+  a5: {
+    cat:'Siguranță Rutieră', date:'1 Martie 2025', time:'9 min lectură', author:'Redacția InfrastructuRO',
+    title:'Siguranța rutieră în România: statistici, cauze și soluții concrete',
+    body:`<p>Conform datelor Eurostat, România se situează constant printre statele cu cele mai ridicate rate de mortalitate rutieră din UE. Cu aproape 7–8 decese la un milion de locuitori, față de media UE de aproximativ 4,5, diferența reflectă un cumul de factori structurali.</p>
+<h3>Cauzele principale</h3>
+<p>Studiile identifică trei categorii mari de cauze: infrastructura deficitară (drumuri înguste fără acostament, intersecții periculoase, lipsă de separatoare), comportamentul șoferilor (viteză excesivă, alcool la volan, nerespectarea priorităților) și vehiculele vechi cu sisteme de siguranță depășite.</p>
+<h3>Rolul infrastructurii în reducerea accidentelor</h3>
+<p>Studiile internaționale demonstrează că modernizarea infrastructurii rutiere poate reduce rata accidentelor cu 30–50%. Separatoarele de sens, parapetele de siguranță, limitatoarele de viteză la intrările în localități și iluminatul adecvat sunt măsuri cu impact dovedit.</p>
+<h3>Soluții imediate și pe termen lung</h3>
+<p>Pe termen scurt, instalarea de echipamente de siguranță la punctele negre identificate poate salva vieți rapid și cu costuri relativ mici. Pe termen lung, construcția de autostrăzi care separă fizic sensurile de mers rămâne cea mai eficientă soluție.</p>`,
+    tairo:'Limitatoarele de viteză, bolarzii și barierele de protecție din cauciuc reciclat de la Tairo Safety sunt soluții dovedite pentru reducerea accidentelor la intrările în localități, în parcări și în zone industriale. Investiția în siguranță rutieră salvează vieți.'
+  },
+  a6: {
+    cat:'Sustenabilitate', date:'10 Martie 2025', time:'5 min lectură', author:'Redacția InfrastructuRO',
+    title:'Infrastructura verde: soluții ecologice pentru drumurile României',
+    body:`<p>Conceptul de infrastructură verde include acum și modul în care construim și echipăm drumurile. De la asfalt cu materiale reciclate la sisteme de drenaj natural și panouri fotovoltaice pe marginea autostrăzilor, paleta soluțiilor ecologice se extinde rapid.</p>
+<h3>Materiale reciclate în construcția drumurilor</h3>
+<p>Granulatul din cauciuc reciclat poate fi integrat în mixturile asfaltice pentru a crește elasticitatea și durabilitatea carosabilului, reducând totodată zgomotul de rulare. Această tehnologie este deja utilizată pe scară largă în Europa de Vest și câștigă teren și în România.</p>
+<h3>Echipamente rutiere sustenabile</h3>
+<p>Dincolo de asfalt, echipamentele de siguranță și organizare a traficului produse din materiale reciclate reprezintă o altă categorie importantă. Bolarzii, separatoarele și limitatoarele de viteză din cauciuc reciclat înlocuiesc cu succes alternativele din beton sau metal.</p>
+<h3>România și Pactul Verde European</h3>
+<p>Angajamentele din Green Deal european implică și sectorul transporturi. Romania trebuie să demonstreze progrese concrete în reducerea emisiilor din transport și în adoptarea practicilor sustenabile în construcția și mentenanța infrastructurii.</p>`,
+    tairo:'Tairo Safety reprezintă exact tipul de producător sustenabil de care România are nevoie pentru a-și atinge obiectivele din Pactul Verde European. Produse din cauciuc reciclat, fabricate local, cu impact minimal asupra mediului.'
+  },
+  a7: {
+    cat:'Feroviar', date:'18 Martie 2025', time:'8 min lectură', author:'Redacția InfrastructuRO',
+    title:'CFR Infrastructură: starea rețelei feroviare române în 2025',
+    body:`<p>Dacă infrastructura rutieră a României este criticată, cea feroviară se află într-o situație și mai problematică. Cu sute de kilometri de linii unde trenurile circulă cu 30–50 km/h, România are cea mai lentă rețea feroviară din UE pe mai mulți indicatori.</p>
+<h3>Cifre care spun totul</h3>
+<p>Viteza medie comercială pe rețeaua CFR este printre cele mai scăzute din Europa. Pe anumite tronsoane, cum ar fi Brașov–Sighișoara, trenurile parcurg distanța în timp mai lung decât autoturismele. Poduri cu restricții de viteză, linii cu infrastructură din anii 1960 și material rulant uzat completează imaginea.</p>
+<h3>Proiectele în derulare</h3>
+<p>Există mai multe proiecte de modernizare feroviară finanțate din fonduri europene. Coridorul Rin–Dunăre, care traversează România, beneficiază de investiții importante. Modernizarea Brașov–Sighișoara, electrificarea unor tronsoane și achiziția de material rulant nou sunt câteva exemple concrete.</p>
+<h3>Feroviarul și sustenabilitatea</h3>
+<p>Investiția în feroviar nu este doar o chestiune de confort — este direct legată de reducerea emisiilor de CO₂. Un călător care alege trenul în loc de mașina personală reduce semnificativ amprenta sa de carbon. Modernizarea CFR este deci și o prioritate climatică.</p>`,
+    tairo:'Infrastructura feroviară include și echipamente de siguranță și delimitare pe peroanele și în parcările gărilor. Bolarzii și separatoarele din cauciuc reciclat Tairo Safety sunt potrivite pentru astfel de aplicații în orice spațiu public.'
+  },
+  a8: {
+    cat:'Autostrăzi', date:'25 Martie 2025', time:'7 min lectură', author:'Redacția InfrastructuRO',
+    title:'Autostrada A7 Moldova: promisiunile, realitatea și termenele',
+    body:`<p>Autostrada A7, supranumită Autostrada Moldovei, este proiectul de infrastructură cu cel mai mare impact potențial pentru estul și nord-estul României — o regiune cu mult sub media națională la nivel de conectivitate rutieră.</p>
+<h3>Ce este A7 și unde ar urma să ajungă</h3>
+<p>A7 urmează să lege Ploiești de Pașcani, continuând spre Siret la granița cu Ucraina. Practic, va conecta capitala la Moldova și va transforma complet accesibilitatea regiunii, cu efecte economice semnificative.</p>
+<h3>Stadiul actual al lucrărilor</h3>
+<p>Unele tronsoane sunt în construcție activă, cu progrese vizibile în special în zonele de câmpie. Sectoarele cu relief mai complex, trecerile de văi și zonele cu expropieri nefinalizate rămân punctele critice care pot afecta termenele.</p>
+<h3>Impactul economic estimat</h3>
+<p>Studiile economice estimate indică că finalizarea A7 ar putea crește PIB-ul regiunii Moldova cu câteva procente, prin reducerea costurilor de transport, atragerea de investiții și facilitarea mobilității forței de muncă. Este un proiect cu miză națională, nu doar regională.</p>`,
+    tairo:'Pe șantierele de autostradă de talia A7, echipamentele de delimitare și siguranță sunt prezente în mii de exemplare. Balizele, bolarzii și barierele Tairo Safety din cauciuc reciclat sunt alegerea potrivită pentru orice șantier de mare anvergură.'
+  },
+  a9: {
+    cat:'Siguranță Rutieră', date:'2 Aprilie 2025', time:'5 min lectură', author:'Redacția InfrastructuRO',
+    title:'Barierele de protecție din cauciuc: alternative moderne la beton',
+    body:`<p>În peisajul infrastructurii rutiere românești, barierele de protecție din beton și metal au dominat decenii la rând. Apariția alternativelor din cauciuc reciclat deschide o nouă perspectivă, mai sustenabilă și mai eficientă în anumite aplicații.</p>
+<h3>Avantajele tehnice ale cauciucului</h3>
+<p>O barieră din cauciuc reciclat absoarbe impactul în mod diferit față de beton: în loc să transfere integral forța în vehicul, amortizează o parte din energie. Acest lucru reduce semnificativ severitatea rănilor în accidentele la viteză mică și medie, cum sunt cele din parcări sau intersecții amenajate.</p>
+<h3>Greutate, instalare, întreținere</h3>
+<p>Barierele din cauciuc sunt de 3–5 ori mai ușoare decât echivalentele din beton, ceea ce simplifică enorm transportul și instalarea. Nu necesită echipamente grele, se pot monta și demonta rapid și nu se deteriorează în contact cu umiditatea sau sărurile de deszăpezire.</p>
+<h3>De ce le adoptăm lent?</h3>
+<p>Principalul obstacol rămâne obișnuința — specificațiile tehnice din caietele de sarcini ale instituțiilor publice sunt adesea redactate pentru materiale tradiționale. Educarea proiectanților și a achizitorului public față de alternativele sustenabile este un proces lent, dar în curs.</p>`,
+    tairo:'Tairo Safety produce bariere New Jersey și Colorado din cauciuc reciclat, disponibile în mai multe dimensiuni, potrivite pentru separarea sensurilor, delimitarea parcărilor și protecția zonelor pietonale. Vizitează Tairo.ro pentru specificații complete.'
+  },
+  a10: {
+    cat:'Fonduri EU', date:'10 Aprilie 2025', time:'6 min lectură', author:'Redacția InfrastructuRO',
+    title:'Absorbția fondurilor europene: județ cu județ, cine performează?',
+    body:`<p>România are acces la fonduri europene istorice, dar distribuția lor nu este uniformă la nivel teritorial. Unele județe excelează în accesarea banilor europeni pentru infrastructură, în timp ce altele rămân mult în urmă, adâncind disparitățile regionale.</p>
+<h3>Județele cu cea mai bună absorbție</h3>
+<p>În general, județele cu administrații locale mai puternice, cu personal tehnic mai bun și cu experiență anterioară în proiecte europene tind să performeze mai bine. Cluj, Ilfov și câteva județe din vest se numără constant printre lideri. Capacitatea instituțională contează mai mult decât simplele resurse financiare.</p>
+<h3>Județele cu dificultăți</h3>
+<p>Județele mai sărace, care au cel mai mult nevoie de infrastructură, se confruntă paradoxal cu cele mai mari dificultăți în accesarea fondurilor. Lipsa personalului calificat, datoriile la bugetul local care blochează cofinanțarea și dependența de consultanți externi scumpi sunt obstacole structurale greu de depășit rapid.</p>
+<h3>Ce soluții există?</h3>
+<p>Programele de suport tehnic și administrative finanțate la nivel european, mentoringul între primării și simplificarea procedurilor de achiziție publică pot face diferența. Câteva inițiative pilot arată că, cu sprijinul potrivit, și județele cu capacitate slabă pot absorbi fonduri semnificative.</p>`,
+    tairo:'Proiectele de infrastructură finanțate european, indiferent de județ, necesită echipamente certificate și produse de calitate. Tairo Safety livrează în toată România soluții de infrastructură sustenabilă, potrivite pentru orice proiect european.'
+  },
+  a11: {
+    cat:'Urban', date:'18 Aprilie 2025', time:'5 min lectură', author:'Redacția InfrastructuRO',
+    title:'Pistele de biciclete în România: progres timid față de media europeană',
+    body:`<p>Mobilitatea pe bicicletă câștigă teren în România, dar infrastructura necesară rămâne în urmă față de cerere și față de standardele europene. Rețelele de piste de biciclete din orașele românești sunt adesea discontinue, cu sectoare lipsă și cu probleme de siguranță la intersecții.</p>
+<h3>Situația în principalele orașe</h3>
+<p>Cluj-Napoca are cea mai dezvoltată rețea de cicloinfrastructură din România, cu zeci de kilometri de piste și proiecte în curs. Timișoara și Oradea au investit și ele semnificativ. Bucureștiul, prin dimensiunea sa, rămâne o provocare: deși există sectoare cu piste, rețeaua este fragmentată și în multe cazuri nesigură.</p>
+<h3>Ce lipsește pentru o rețea coerentă</h3>
+<p>Problema nu este doar lungimea pistelor — este și calitatea lor. Pistele de biciclete trebuie să fie separate fizic de traficul auto, să aibă prioritate la intersecții și să fie conectate la destinații relevante: stații de transport public, parcări, zone comerciale și rezidențiale.</p>
+<h3>Rolul separatoarelor fizice</h3>
+<p>Studiile de siguranță rutieră arată că pistele de biciclete protejate fizic — cu bolarzi sau separatoare — sunt cu mult mai sigure decât simpla marcare cu vopsea. Investiția în separatoare este mică față de beneficiul de siguranță adus cicliștilor.</p>`,
+    tairo:'Bolarzii și separatoarele din cauciuc reciclat Tairo Safety sunt soluția ideală pentru protejarea fizică a pistelor de biciclete. Ușor de instalat, rezistenți la impact și cu o amprentă de carbon minimă, sunt alegerea logică pentru orice proiect de mobilitate urbană sustenabilă.'
+  },
+  a12: {
+    cat:'Sustenabilitate', date:'26 Aprilie 2025', time:'6 min lectură', author:'Redacția InfrastructuRO',
+    title:'Reducerea emisiilor în transport: ce poate face România până în 2030',
+    body:`<p>Sectorul transport este responsabil pentru o parte semnificativă din emisiile de gaze cu efect de seră ale României. Decarbonizarea transportului nu este opțională — este o obligație asumată prin acordurile climatice europene și internaționale.</p>
+<h3>Electrificarea transportului</h3>
+<p>Creșterea ponderii vehiculelor electrice în parcul auto este esențială, dar insuficientă dacă nu este însoțită de o infrastructură de încărcare adecvată și de o producție de energie electrică din surse regenerabile. Rețeaua de stații de încărcare din România este în curs de expansiune, dar rămâne sub necesarul estimat.</p>
+<h3>Transportul în comun — soluția subestimată</h3>
+<p>Cel mai eficient mod de a reduce emisiile din transport este de a muta călătorii din mașini individuale în transport în comun. Un autobuz electric înlocuiește zeci de autoturisme pe aceeași distanță. Investiția în rețele de metrou, tramvai și autobuz modern este direct legată de obiectivele climatice.</p>
+<h3>Materialele de construcție sustenabile</h3>
+<p>Dincolo de vehicule, chiar și materialele folosite pentru construcția și echiparea drumurilor au o amprentă de carbon. Înlocuirea betonu­lui și metalului cu cauciuc reciclat acolo unde este posibil — în echipamentele rutiere, separatoare, bolarzi — contribuie la reducerea emisiilor din sectorul construcții-infrastructură.</p>`,
+    tairo:'Tairo Safety contribuie direct la obiectivele de reducere a emisiilor prin utilizarea a peste 90% cauciuc reciclat în toate produsele sale. Alegerea produselor Tairo înseamnă infrastructură rutieră cu amprenta de carbon minimă.'
+  }
+};
+
+// ── MODAL ──────────────────────────────────────
+function openArticle(id) {
+  const a = A[id]; if (!a) return;
+  document.getElementById('modal-content').innerHTML = `
+    <div style="margin-bottom:.9rem"><span class="art-cat">${a.cat}</span></div>
+    <h2>${a.title}</h2>
+    <div class="modal-meta">
+      <span>${a.date}</span><span>·</span>
+      <span>${a.time}</span><span>·</span>
+      <span>${a.author}</span>
+    </div>
+    <div class="modal-body">${a.body}</div>
+    <div class="modal-tairo">
+      <p><strong>Soluții sustenabile pentru infrastructură:</strong> ${a.tairo}</p>
+      <a href="https://www.tairo.ro" target="_blank">Vizitează Tairo.ro →</a>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOutside(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── FILTER ─────────────────────────────────────
+function filterCat(cat) {
+  document.querySelectorAll('#art-grid .art-card').forEach(c => {
+    c.style.display = (cat === 'toate' || c.dataset.cat === cat) ? '' : 'none';
+  });
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    if (b.onclick && b.onclick.toString().includes(`'${cat}'`)) b.classList.add('active');
+  });
+  if (cat !== 'toate') document.getElementById('art-grid').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── NAV TOGGLE ─────────────────────────────────
+function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
+function showHome()   { filterCat('toate'); window.scrollTo({top:0, behavior:'smooth'}); }
+
+// ── NEWSLETTER ─────────────────────────────────
+function nlSubmit() {
+  const el = document.getElementById('nl-email');
+  if (!el.value.includes('@')) { el.style.borderColor='#e05252'; return; }
+  el.style.borderColor = 'var(--green)';
+  el.value = '';
+  el.placeholder = 'Mulțumim! Te-ai abonat cu succes.';
+  setTimeout(() => { el.placeholder = 'adresa@email.ro'; el.style.borderColor=''; }, 3000);
+}
+
+// ── SCROLL REVEAL ───────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
