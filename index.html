@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -24,7 +23,7 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://infrastructuro.netlify.app/" />
   <!-- Favicon SVG inline -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23131e14'/%3E%3Ctext x='16' y='23' font-family='Geist%2Csans-serif' font-size='18' font-weight='700' fill='%233ab54a' text-anchor='middle'%3EIH%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23131e14'/%3E%3Cpolygon points='16,2 28,9 28,23 16,30 4,23 4,9' fill='none' stroke='%233ab54a' stroke-width='1.2' opacity='.5'/%3E%3Cline x1='16' y1='6' x2='16' y2='27' stroke='%233ab54a' stroke-width='2.5' stroke-linecap='round'/%3E%3Cline x1='10' y1='25' x2='16' y2='6' stroke='%233ab54a' stroke-width='1' opacity='.7' stroke-linecap='round'/%3E%3Cline x1='22' y1='25' x2='16' y2='6' stroke='%233ab54a' stroke-width='1' opacity='.7' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='6' r='2.5' fill='%233ab54a'/%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='32' fill='%23131e14'/%3E%3Ctext x='90' y='130' font-family='Geist%2Csans-serif' font-size='100' font-weight='700' fill='%233ab54a' text-anchor='middle'%3EIH%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -63,9 +62,9 @@
       --green2:    #2d9e3c;
       --green-dim: rgba(58,181,74,.16);
       --green-glow:rgba(58,181,74,.09);
-      --white:     #f0f7f1;
-      --white-dim: #b0c8b4;
-      --muted:     #6b8a70;
+      --white:     #f8fdf9;
+      --white-dim: #c9e1cd;
+      --muted:     #84a389;
       --border:    rgba(58,181,74,.18);
       --border2:   rgba(58,181,74,.28);
       --radius:    6px;
@@ -83,7 +82,8 @@
     /* ── HEADER ── */
     header{position:sticky;top:0;z-index:100;background:rgba(19,30,20,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
     .hdr{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);height:64px;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-size:1.35rem;font-weight:700;letter-spacing:-.03em;cursor:pointer;user-select:none}
+    .logo{font-size:1.35rem;font-weight:700;letter-spacing:-.03em;cursor:pointer;user-select:none;display:flex;align-items:center;gap:9px}
+    .logo-svg{width:28px;height:25px;flex-shrink:0}
     .logo span{color:var(--green)}
     nav{display:flex;align-items:center;gap:1.8rem}
     nav a{font-size:.82rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--white-dim);transition:color .18s}
@@ -236,12 +236,38 @@
     .art-card[data-hidden="true"]{display:none}
   </style>
 </head>
+  <meta name="google-site-verification" content="OdRF4Sb3EK1sKs0CXjBZ_DjZfo_TMeMAjCgggqLeU9k" />
 <body>
 
 <!-- ══ HEADER ══ -->
 <header>
   <div class="hdr">
-    <div class="logo" onclick="showHome()">Infra<span>Hub</span></div>
+    <div class="logo" onclick="showHome()" style="display:flex;align-items:center;gap:9px">
+  <svg class="logo-svg" viewBox="0 0 38 34" xmlns="http://www.w3.org/2000/svg" aria-label="InfraHub logo">
+    <defs>
+      <linearGradient id="lgroad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3ab54a"/>
+        <stop offset="100%" stop-color="#2d9e3c"/>
+      </linearGradient>
+    </defs>
+    <!-- Hexagon "hub" background -->
+    <polygon points="19,1 35,10 35,28 19,37 3,28 3,10" fill="none" stroke="#3ab54a" stroke-width="1.6" opacity=".5"/>
+    <!-- Road perspectivă: 3 benzi convergente spre centru -->
+    <!-- banda centrala -->
+    <line x1="19" y1="7" x2="19" y2="31" stroke="url(#lgroad)" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- linii laterale care converg spre un punct de fuga sus -->
+    <line x1="11" y1="30" x2="19" y2="7" stroke="#3ab54a" stroke-width="1.4" opacity=".7" stroke-linecap="round"/>
+    <line x1="27" y1="30" x2="19" y2="7" stroke="#3ab54a" stroke-width="1.4" opacity=".7" stroke-linecap="round"/>
+    <!-- marcaje de drum (linii punctate transversale) -->
+    <line x1="15.5" y1="14" x2="22.5" y2="14" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <line x1="14" y1="19" x2="24" y2="19" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <line x1="13" y1="25" x2="25" y2="25" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <!-- nod central (hub dot) -->
+    <circle cx="19" cy="7" r="3" fill="#3ab54a" opacity=".9"/>
+    <circle cx="19" cy="7" r="1.5" fill="#131e14"/>
+  </svg>
+  <span style="letter-spacing:-.03em">Infra<span style="color:var(--green)">Hub</span></span>
+</div>
     <nav id="main-nav">
       <a href="#articole" onclick="filterCat('toate')">Articole</a>
       <a href="#articole" onclick="filterCat('autostrazi')">Autostrăzi</a>
@@ -316,7 +342,7 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2h3.17L14.13 10.2 22.8 22h-6.93l-5.3-6.93L4.24 22H1.07l7.73-8.84L.8 2h7.1l4.8 6.26L18.24 2zm-1.1 18h1.75L6.97 3.74H5.1L17.14 20z"/></svg>
     X / Twitter
   </a>
-  <a class="share-btn" href="whatsapp://send?text=InfraHub+–+Blogul+Infrastructurii+Romanesti+https://infrastructuro.netlify.app/" target="_blank" rel="noopener" aria-label="Distribuie pe WhatsApp">
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=InfraHub+%E2%80%93+Blogul+Infrastructurii+Romanesti+https://infrastructuro.netlify.app/" target="_blank" rel="noopener" aria-label="Distribuie pe WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.64.07a8.1 8.1 0 0 1-2.39-1.48 9 9 0 0 1-1.65-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0-.02-.52c-.07-.15-.67-1.6-.91-2.2s-.48-.5-.67-.51h-.57a1.1 1.1 0 0 0-.8.37 3.35 3.35 0 0 0-1.04 2.5 5.84 5.84 0 0 0 1.22 3.1c.15.2 2.08 3.17 5.04 4.44a17 17 0 0 0 1.68.62 4.04 4.04 0 0 0 1.86.12c.57-.08 1.75-.72 2-1.4s.25-1.28.17-1.4-.27-.2-.57-.35zM12 21.9a9.9 9.9 0 0 1-5.03-1.37l-.36-.21-3.73.98 1-3.63-.24-.37A9.91 9.91 0 1 1 12 21.9zm0-21.9A12 12 0 0 0 1.93 19.1L0 24l5.06-1.33A12 12 0 1 0 12 0z"/></svg>
     WhatsApp
   </a>
@@ -653,59 +679,91 @@
     <div class="prod-card reveal" id="produs-bariere">
       <a href="https://www.tairo.ro" target="_blank">
         <div class="prod-thumb">
-          <!-- Bariera New Jersey – profil NJ autentic, vedere 3/4 -->
-          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Bariera New Jersey din cauciuc reciclat">
+          <!-- Bariera New Jersey – profil NJ autentic 3D, negru cauciuc, benzi galbene reflectorizante -->
+          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Bariera New Jersey din cauciuc reciclat 160cm">
             <defs>
-              <linearGradient id="njBody" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#2a3d2b"/>
-                <stop offset="100%" stop-color="#131e14"/>
+              <linearGradient id="njFace" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#1e2f1f"/>
+                <stop offset="100%" stop-color="#283b2a"/>
               </linearGradient>
               <linearGradient id="njTop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#364d38"/>
-                <stop offset="100%" stop-color="#223325"/>
+                <stop offset="0%" stop-color="#2f442f"/>
+                <stop offset="100%" stop-color="#1e2f1f"/>
+              </linearGradient>
+              <linearGradient id="njSide" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#131e14"/>
+                <stop offset="100%" stop-color="#1b2a1d"/>
               </linearGradient>
             </defs>
             <rect width="300" height="160" fill="#1b2a1d"/>
-            <!-- Ground shadow -->
-            <ellipse cx="150" cy="148" rx="130" ry="7" fill="#3ab54a" opacity=".08"/>
-            <!-- Ground line -->
-            <rect x="0" y="143" width="300" height="17" fill="#131e14" opacity=".6"/>
 
-            <!-- BARIERA NEW JERSEY: profil clasic în perspectivă 3/4 -->
-            <!-- Corp principal: baza largă → mijloc în pantă → vârf îngust -->
-            <!-- Față frontală – profilul NJ -->
-            <!-- baza jos: 300px lata, 18px inalta -->
-            <rect x="18" y="125" width="264" height="18" rx="0" fill="url(#njBody)" stroke="#3ab54a" stroke-width=".6" opacity=".9"/>
-            <!-- secțiunea inferioară angled (0-40% din înălțime) -->
-            <polygon points="18,125 282,125 272,92 28,92" fill="url(#njBody)" stroke="#3ab54a" stroke-width=".5" opacity=".85"/>
-            <!-- secțiunea superioară: mai abruptă, îngustate mai mult -->
-            <polygon points="28,92 272,92 258,52 42,52" fill="url(#njBody)" stroke="#3ab54a" stroke-width=".5" opacity=".8"/>
-            <!-- vârful îngust -->
-            <rect x="42" y="34" width="216" height="18" rx="2" fill="url(#njTop)" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
-            <!-- Capac plat superior -->
-            <polygon points="42,34 258,34 264,28 36,28" fill="#283b2a" stroke="#3ab54a" stroke-width=".8" opacity=".95"/>
+            <!-- Shadow pe podea -->
+            <ellipse cx="155" cy="152" rx="125" ry="6" fill="#000" opacity=".35"/>
 
-            <!-- Benzi reflectorizante galbene caracteristice -->
-            <!-- banda galbenă sus -->
-            <rect x="42" y="37" width="216" height="7" fill="#c8a800" opacity=".85" rx="1"/>
-            <!-- banda alba mijloc -->
-            <rect x="28" y="78" width="244" height="6" fill="#f0f7f1" opacity=".55" rx="1"/>
-            <!-- banda galbenă jos -->
-            <rect x="18" y="118" width="264" height="5" fill="#c8a800" opacity=".7" rx="1"/>
+            <!-- 
+              Profil NJ din față (vedere frontală a capătului):
+              Originea la (30, 148) — dreapta jos
+              Baza: 64px lată
+              Step mic: 4px în, 8px sus
+              Pantă lentă: 15px în, 42px sus  
+              Pantă abruptă: 10px în, 55px sus
+              Vârf: 10px lat, sus = y 43
+            -->
 
-            <!-- Linii de îmbinare (segmente) pe barieră -->
-            <line x1="108" y1="28" x2="98" y2="143" stroke="#3ab54a" stroke-width=".8" opacity=".25"/>
-            <line x1="192" y1="28" x2="202" y2="143" stroke="#3ab54a" stroke-width=".8" opacity=".25"/>
+            <!-- FATA FRONTALA (capatul stâng al barierei) — culoare mai deschisă -->
+            <polygon
+              points="30,148  94,148  94,140  90,140  90,98  80,56  60,43  50,43  40,56  30,98  30,140"
+              fill="url(#njFace)"
+              stroke="#3ab54a" stroke-width=".7" opacity=".9"
+            />
+            <!-- Vârf plat (top cap) -->
+            <polygon points="50,43 80,43 80,36 50,36" fill="url(#njTop)" stroke="#3ab54a" stroke-width=".6" opacity=".9"/>
 
-            <!-- Gauri de prindere pe baza -->
-            <circle cx="60" cy="136" r="4" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".6"/>
-            <circle cx="150" cy="136" r="4" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".6"/>
-            <circle cx="240" cy="136" r="4" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".6"/>
+            <!-- FATA LATERALA (lungimea barierei spre dreapta, în perspectivă) -->
+            <!-- Proiectăm fiecare punct al profilului cu offset x=+200, y=-18 (perspectivă) -->
+            <!-- Fata laterala superioara (pantele superioare) -->
+            <polygon
+              points="80,56  240,38  230,20  80,36  50,36  240,18  240,18  50,36"
+              fill="url(#njSide)" stroke="#3ab54a" stroke-width=".5" opacity=".7"
+            />
+            <!-- recalc corect: translatem cu (200,-18) fiecare punct -->
+            <!-- top varf: 50,43→250,25 | 80,43→280,25 -->
+            <!-- panta sup sus: 40,56→240,38 | 90,56→290,38 — se vede panta laterala -->
+            <!-- suprafata superioara (plat deasupra) -->
+            <polygon points="50,43 80,43 280,25 250,25" fill="#2a3e2a" stroke="#3ab54a" stroke-width=".6" opacity=".85"/>
+            <!-- panta superioara laterala - dreapta -->
+            <polygon points="80,43 90,98 290,80 280,25" fill="#1e2e1e" stroke="#3ab54a" stroke-width=".4" opacity=".7"/>
+            <!-- panta superioara laterala - stanga -->
+            <polygon points="50,43 40,98 240,80 250,25" fill="#243624" stroke="#3ab54a" stroke-width=".4" opacity=".5"/>
+            <!-- panta inferioara laterala - dreapta -->
+            <polygon points="90,98 94,140 294,122 290,80" fill="#192a19" stroke="#3ab54a" stroke-width=".4" opacity=".7"/>
+            <!-- panta inferioara laterala - stanga -->
+            <polygon points="40,98 30,140 230,122 240,80" fill="#213221" stroke="#3ab54a" stroke-width=".4" opacity=".45"/>
+            <!-- Baza laterala -->
+            <polygon points="30,140 94,140 294,122 230,122" fill="#162216" stroke="#3ab54a" stroke-width=".4" opacity=".8"/>
+            <!-- Baza jos -->
+            <polygon points="30,148 94,148 294,130 230,130" fill="#111a12" stroke="#3ab54a" stroke-width=".5" opacity=".9"/>
+            <!-- conectare baza: fata lat dreapta -->
+            <polygon points="94,140 94,148 294,130 294,122" fill="#131e14" stroke="#3ab54a" stroke-width=".4" opacity=".8"/>
+
+            <!-- BENZI REFLECTORIZANTE GALBENE — 2 benzi pe fata frontala -->
+            <polygon points="34,105 90,105 90,97 34,97" fill="#c8a800" opacity=".9" rx="1"/>
+            <polygon points="44,62 86,62 82,54 48,54" fill="#c8a800" opacity=".85"/>
+            <!-- Benzi reflectorizante pe latura laterala (perpendicular pe lungime) -->
+            <!-- Banda la ~1/3 din lungime -->
+            <line x1="163" y1="65" x2="163" y2="112" stroke="#c8a800" stroke-width="4" opacity=".5"/>
+            <line x1="230" y1="45" x2="230" y2="98" stroke="#c8a800" stroke-width="3.5" opacity=".4"/>
+
+            <!-- Gauri de prindere pe baza (interlocking) -->
+            <circle cx="62" cy="145" r="5" fill="#131e14" stroke="#3ab54a" stroke-width=".6" opacity=".7"/>
+
+            <!-- Label dimensiune -->
+            <text x="155" y="158" font-family="Geist,sans-serif" font-size="8" fill="#84a389" text-anchor="middle" opacity=".6">160–200 cm · cauciuc reciclat</text>
           </svg>
         </div>
         <div class="prod-body">
           <div class="prod-tag">Separare trafic</div>
-          <h4>Bariere New Jersey &amp; Colorado</h4>
+          <h4>Bariere New Jersey &amp; Colorado<br><small style="font-weight:400;font-size:.78rem;color:var(--muted)">Profil NJ 160–200 cm / Colorado 140–180 cm</small></h4>
           <p>Bariere rutiere din cauciuc reciclat pentru separarea sensurilor și protecția lucrătorilor. Disponibile în 140–200 cm. Ușor de transportat și montat.</p>
           <span class="prod-cta">Detalii pe Tairo.ro →</span>
         </div>
@@ -800,75 +858,69 @@
     <div class="prod-card reveal" id="produs-balize-antiorbire">
       <a href="https://www.tairo.ro" target="_blank">
         <div class="prod-thumb">
-          <!-- Balize antiorbire – aripioare/panouri plate pe linia de mijloc a drumului -->
-          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Balize antiorbire din cauciuc reciclat pentru siguranta rutiera">
+          <!-- Balize antiorbire – panouri alternante pe stâlp median, blochează farurile din sens opus -->
+          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Balize antiorbire din cauciuc reciclat pentru linia mediana a drumului">
             <defs>
-              <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#1e2a1e"/>
-                <stop offset="100%" stop-color="#131e14"/>
+              <linearGradient id="aoRoad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#161f17"/>
+                <stop offset="100%" stop-color="#0f160f"/>
               </linearGradient>
             </defs>
             <rect width="300" height="160" fill="#1b2a1d"/>
 
-            <!-- Suprafata drumului - vedere de sus/față în perspectivă -->
-            <!-- Sens stânga (venind spre noi) -->
-            <polygon points="0,160 150,90 150,160" fill="url(#roadGrad)" opacity=".9"/>
-            <polygon points="150,90 300,160 150,160" fill="url(#roadGrad)" opacity=".75"/>
-            <!-- Linia de mijloc -->
-            <line x1="150" y1="90" x2="150" y2="160" stroke="#c8a800" stroke-width="1.5" stroke-dasharray="10 8" opacity=".5"/>
-            <!-- Marginile benzilor -->
-            <line x1="0" y1="160" x2="150" y2="90" stroke="#f0f7f1" stroke-width=".8" opacity=".2"/>
-            <line x1="300" y1="160" x2="150" y2="90" stroke="#f0f7f1" stroke-width=".8" opacity=".2"/>
+            <!-- Drum cu 2 sensuri + separator central -->
+            <rect x="0" y="95" width="300" height="65" fill="url(#aoRoad)"/>
+            <!-- Marginea drumului sus -->
+            <line x1="0" y1="95" x2="300" y2="95" stroke="#c8a800" stroke-width="1.5" opacity=".45"/>
+            <!-- Linie laterala drum - dreapta -->
+            <line x1="0" y1="155" x2="300" y2="155" stroke="#f8fdf9" stroke-width="1" opacity=".2"/>
+            <!-- Linie laterala drum - stanga -->
+            <line x1="0" y1="100" x2="300" y2="100" stroke="#f8fdf9" stroke-width="1" opacity=".2"/>
+            <!-- Linii intrerupte de banda dreapta -->
+            <line x1="10" y1="128" x2="40" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
+            <line x1="60" y1="128" x2="90" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
+            <line x1="110" y1="128" x2="140" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
+            <line x1="160" y1="128" x2="190" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
+            <line x1="210" y1="128" x2="240" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
+            <line x1="260" y1="128" x2="290" y2="128" stroke="#f8fdf9" stroke-width="1.2" opacity=".3"/>
 
-            <!-- Faruri mașina din stânga (simulare orbire) -->
-            <ellipse cx="60" cy="145" rx="12" ry="5" fill="#c8a800" opacity=".3"/>
-            <ellipse cx="90" cy="145" rx="10" ry="4" fill="#c8a800" opacity=".25"/>
-            <!-- Raze far -->
-            <polygon points="60,145 55,140 140,95 145,100" fill="#c8a800" opacity=".06"/>
-            <polygon points="90,145 85,140 148,95 153,100" fill="#c8a800" opacity=".05"/>
+            <!-- STÂLP CENTRAL al balizei (montaj pe linia de mijloc a drumului) -->
+            <!-- Baza de prindere cauciuc -->
+            <rect x="143" y="88" width="14" height="12" rx="2" fill="#223325" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
 
-            <!-- BALIZE ANTIORBIRE – panouri cauciuc negru pe linia de mijloc -->
-            <!-- Fiecare baliaza antiorbire: baza plata + panou vertical cu reflectori pe ambele fete -->
-            <!-- Baliaza 1 (cea mai mare, cea mai aproape) -->
-            <g transform="translate(150,148)">
-              <!-- baza cauciuc pe drum -->
-              <rect x="-18" y="-5" width="36" height="10" rx="2" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
-              <!-- corp panou vertical (privit din fata, e un dreptunghi subtire) -->
-              <rect x="-2.5" y="-38" width="5" height="35" fill="#1b2a1d" stroke="#3ab54a" stroke-width=".5" opacity=".9"/>
-              <!-- Reflectori galbeni pe față -->
-              <rect x="-2.5" y="-36" width="5" height="7" rx="1" fill="#c8a800" opacity=".95"/>
-              <rect x="-2.5" y="-26" width="5" height="7" rx="1" fill="#f0f7f1" opacity=".8"/>
-              <rect x="-2.5" y="-16" width="5" height="7" rx="1" fill="#c8a800" opacity=".9"/>
-              <!-- glow reflector -->
-              <ellipse cx="0" cy="-25" rx="12" ry="18" fill="#c8a800" opacity=".07"/>
-            </g>
-            <!-- Baliaza 2 (mai mică, mai departe) -->
-            <g transform="translate(150,128) scale(.72)">
-              <rect x="-18" y="-5" width="36" height="10" rx="2" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".85"/>
-              <rect x="-2.5" y="-38" width="5" height="35" fill="#1b2a1d" stroke="#3ab54a" stroke-width=".5" opacity=".85"/>
-              <rect x="-2.5" y="-36" width="5" height="7" rx="1" fill="#c8a800" opacity=".85"/>
-              <rect x="-2.5" y="-26" width="5" height="7" rx="1" fill="#f0f7f1" opacity=".7"/>
-              <rect x="-2.5" y="-16" width="5" height="7" rx="1" fill="#c8a800" opacity=".8"/>
-            </g>
-            <!-- Baliaza 3 (și mai mică, în perspectivă) -->
-            <g transform="translate(150,112) scale(.5)">
-              <rect x="-18" y="-5" width="36" height="10" rx="2" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".7"/>
-              <rect x="-2.5" y="-38" width="5" height="35" fill="#1b2a1d" stroke="#3ab54a" stroke-width=".5" opacity=".7"/>
-              <rect x="-2.5" y="-32" width="5" height="6" rx="1" fill="#c8a800" opacity=".7"/>
-              <rect x="-2.5" y="-22" width="5" height="6" rx="1" fill="#f0f7f1" opacity=".55"/>
-              <rect x="-2.5" y="-12" width="5" height="6" rx="1" fill="#c8a800" opacity=".65"/>
-            </g>
-            <!-- Baliaza 4 (în depărtare) -->
-            <g transform="translate(150,100) scale(.34)">
-              <rect x="-18" y="-5" width="36" height="10" rx="2" fill="#223325" opacity=".6"/>
-              <rect x="-2.5" y="-38" width="5" height="35" fill="#1b2a1d" opacity=".6"/>
-              <rect x="-2.5" y="-30" width="5" height="12" rx="1" fill="#c8a800" opacity=".55"/>
-            </g>
+            <!-- Corp stâlp vertical -->
+            <rect x="147" y="18" width="6" height="72" fill="#1e2e1e" stroke="#3ab54a" stroke-width=".5" opacity=".9"/>
 
-            <!-- Label indicator -->
-            <text x="150" y="30" font-family="Geist,sans-serif" font-size="9" fill="#6b8a70" text-anchor="middle" opacity=".7">linia de mijloc a drumului</text>
-            <line x1="100" y1="33" x2="140" y2="89" stroke="#6b8a70" stroke-width=".6" opacity=".3" stroke-dasharray="3 3"/>
-            <line x1="200" y1="33" x2="160" y2="89" stroke="#6b8a70" stroke-width=".6" opacity=".3" stroke-dasharray="3 3"/>
+            <!-- PANOURI / ARIPIOARE ALTERNANTE — montate alternant stânga/dreapta pe stâlp -->
+            <!-- Fiecare panou: dreptunghi lat ~50px, înalt ~14px, la unghi ușor, alternant S/D -->
+            <!-- Panou 1 — dreapta (sus) -->
+            <rect x="150" y="22" width="52" height="13" rx="2" fill="#1a2a1a" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
+            <rect x="150" y="23" width="52" height="5" rx="1" fill="#c8a800" opacity=".85"/>
+            <rect x="150" y="30" width="52" height="4" rx="1" fill="#f8fdf9" opacity=".5"/>
+
+            <!-- Panou 2 — stânga -->
+            <rect x="98" y="40" width="52" height="13" rx="2" fill="#1a2a1a" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
+            <rect x="98" y="41" width="52" height="5" rx="1" fill="#c8a800" opacity=".85"/>
+            <rect x="98" y="48" width="52" height="4" rx="1" fill="#f8fdf9" opacity=".5"/>
+
+            <!-- Panou 3 — dreapta -->
+            <rect x="150" y="58" width="52" height="13" rx="2" fill="#1a2a1a" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
+            <rect x="150" y="59" width="52" height="5" rx="1" fill="#c8a800" opacity=".85"/>
+            <rect x="150" y="66" width="52" height="4" rx="1" fill="#f8fdf9" opacity=".5"/>
+
+            <!-- Panou 4 — stânga -->
+            <rect x="98" y="76" width="52" height="13" rx="2" fill="#1a2a1a" stroke="#3ab54a" stroke-width=".8" opacity=".85"/>
+            <rect x="98" y="77" width="52" height="5" rx="1" fill="#c8a800" opacity=".8"/>
+            <rect x="98" y="84" width="52" height="4" rx="1" fill="#f8fdf9" opacity=".45"/>
+
+            <!-- Raze far simulate (din stânga, blocate de panouri) -->
+            <line x1="0" y1="108" x2="150" y2="95" stroke="#c8a800" stroke-width="18" opacity=".04"/>
+            <line x1="0" y1="120" x2="140" y2="95" stroke="#c8a800" stroke-width="12" opacity=".05"/>
+            <!-- X = blocat -->
+            <text x="68" y="65" font-family="Geist,sans-serif" font-size="16" fill="#c8a800" opacity=".2" font-weight="700">✕</text>
+
+            <!-- Label -->
+            <text x="150" y="12" font-family="Geist,sans-serif" font-size="7.5" fill="#84a389" text-anchor="middle" opacity=".7">panouri alternante · blocare faruri · cauciuc reciclat</text>
           </svg>
         </div>
         <div class="prod-body">
@@ -884,82 +936,92 @@
     <div class="prod-card reveal" id="produs-balize-directionale">
       <a href="https://www.tairo.ro" target="_blank">
         <div class="prod-thumb">
-          <!-- Balize directionale – stalpisori flexibili 100cm, benzi reflectorizante galbene/albe -->
-          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Balize directionale din cauciuc reciclat 100cm pentru siguranta rutiera">
+          <!-- Balize directionale – stâlpi flexibili 100cm din cauciuc reciclat cu benzi reflectorizante -->
+          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" aria-label="Balize directionale din cauciuc reciclat 100cm cu benzi reflectorizante">
             <defs>
-              <linearGradient id="blDir" x1="0" y1="0" x2="1" y2="0">
+              <linearGradient id="bdBody" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#131e14"/>
-                <stop offset="35%" stop-color="#2a3d2b"/>
-                <stop offset="65%" stop-color="#2a3d2b"/>
+                <stop offset="40%" stop-color="#243625"/>
+                <stop offset="60%" stop-color="#243625"/>
                 <stop offset="100%" stop-color="#131e14"/>
               </linearGradient>
-              <linearGradient id="roadD" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#1e2a1e"/>
-                <stop offset="100%" stop-color="#131e14"/>
+              <linearGradient id="bdBase" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#263a27"/>
+                <stop offset="100%" stop-color="#1a261a"/>
+              </linearGradient>
+              <linearGradient id="bdFloor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#181e18"/>
+                <stop offset="100%" stop-color="#0f140f"/>
               </linearGradient>
             </defs>
             <rect width="300" height="160" fill="#1b2a1d"/>
 
-            <!-- Drum cu perspectiva usoara -->
-            <rect x="0" y="128" width="300" height="32" fill="url(#roadD)"/>
-            <line x1="0" y1="128" x2="300" y2="128" stroke="#3ab54a" stroke-width=".8" opacity=".15"/>
-            <!-- Linie laterala drum -->
-            <line x1="15" y1="128" x2="15" y2="160" stroke="#f0f7f1" stroke-width="1.5" opacity=".25"/>
+            <!-- Podea asfalt -->
+            <rect x="0" y="132" width="300" height="28" fill="url(#bdFloor)"/>
+            <line x1="0" y1="132" x2="300" y2="132" stroke="#3ab54a" stroke-width=".6" opacity=".12"/>
 
-            <!-- BALIAZA DIRECTIONALA 1 — cea mai apropiată, la marginea drumului (stânga) -->
-            <g transform="translate(55, 128)">
-              <!-- Baza plata cu bolt -->
-              <rect x="-12" y="-6" width="24" height="10" rx="3" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
-              <circle cx="0" cy="-1" r="3" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".7"/>
-              <!-- Corp cilindric principal — 100cm înaltime -->
-              <rect x="-7" y="-97" width="14" height="93" fill="url(#blDir)" stroke="#3ab54a" stroke-width=".7" opacity=".92"/>
-              <!-- Elipsa baza corp -->
-              <ellipse cx="0" cy="-4" rx="7" ry="2.5" fill="#223325" opacity=".6"/>
-              <!-- Capac dome rotunjit -->
-              <ellipse cx="0" cy="-97" rx="7" ry="4" fill="#283b2a" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
-              <!-- BENZI REFLECTORIZANTE — 3 benzi galbene + 2 albe alternate -->
-              <rect x="-7" y="-87" width="14" height="9" rx="1" fill="#c8a800" opacity=".95"/>
-              <rect x="-7" y="-74" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".85"/>
-              <rect x="-7" y="-61" width="14" height="9" rx="1" fill="#c8a800" opacity=".9"/>
-              <rect x="-7" y="-48" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".75"/>
-              <rect x="-7" y="-35" width="14" height="9" rx="1" fill="#c8a800" opacity=".85"/>
-              <!-- Glow subtil -->
-              <ellipse cx="0" cy="-60" rx="14" ry="35" fill="#3ab54a" opacity=".05"/>
+            <!-- ══ BALIAZA STÂNGA (mai mică, în spate, ~80% din mărime) ══ -->
+            <g transform="translate(82, 130) scale(0.78)">
+              <!-- Umbra -->
+              <ellipse cx="0" cy="4" rx="20" ry="4" fill="#000" opacity=".25"/>
+              <!-- Baza de ancorare (platforma dreptunghiulara) -->
+              <rect x="-20" y="-6" width="40" height="12" rx="3" fill="url(#bdBase)" stroke="#3ab54a" stroke-width=".8" opacity=".85"/>
+              <!-- Bolț de prindere central -->
+              <circle cx="0" cy="0" r="4" fill="#131e14" stroke="#3ab54a" stroke-width=".6" opacity=".8"/>
+              <!-- Corp cilindric principal -->
+              <!-- stânga corp (umbra) -->
+              <rect x="-6" y="-103" width="12" height="99" fill="url(#bdBody)" stroke-left="#131e14"/>
+              <!-- contur stâng + drept -->
+              <line x1="-6" y1="-4" x2="-6" y2="-103" stroke="#131e14" stroke-width="1.5"/>
+              <line x1="6" y1="-4" x2="6" y2="-103" stroke="#3ab54a" stroke-width=".5" opacity=".6"/>
+              <!-- Fata corpului (cilindru = dreptunghi cu highlight lateral) -->
+              <rect x="-6" y="-103" width="12" height="99" fill="url(#bdBody)" stroke="#3ab54a" stroke-width=".5" opacity=".8"/>
+              <!-- Capac rotunjit -->
+              <ellipse cx="0" cy="-103" rx="6" ry="4" fill="#243625" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
+              <!-- BENZI REFLECTORIZANTE -->
+              <rect x="-6" y="-90" width="12" height="8" rx="1" fill="#c8a800" opacity=".9"/>
+              <rect x="-6" y="-79" width="12" height="8" rx="1" fill="#f8fdf9" opacity=".8"/>
+              <rect x="-6" y="-68" width="12" height="8" rx="1" fill="#c8a800" opacity=".85"/>
             </g>
 
-            <!-- BALIAZA DIRECTIONALA 2 — la centru -->
-            <g transform="translate(150, 128)">
-              <rect x="-12" y="-6" width="24" height="10" rx="3" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
-              <circle cx="0" cy="-1" r="3" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".7"/>
-              <rect x="-7" y="-97" width="14" height="93" fill="url(#blDir)" stroke="#3ab54a" stroke-width=".7" opacity=".92"/>
-              <ellipse cx="0" cy="-4" rx="7" ry="2.5" fill="#223325" opacity=".6"/>
-              <ellipse cx="0" cy="-97" rx="7" ry="4" fill="#283b2a" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
-              <rect x="-7" y="-87" width="14" height="9" rx="1" fill="#c8a800" opacity=".95"/>
-              <rect x="-7" y="-74" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".85"/>
-              <rect x="-7" y="-61" width="14" height="9" rx="1" fill="#c8a800" opacity=".9"/>
-              <rect x="-7" y="-48" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".75"/>
-              <rect x="-7" y="-35" width="14" height="9" rx="1" fill="#c8a800" opacity=".85"/>
-              <ellipse cx="0" cy="-60" rx="14" ry="35" fill="#3ab54a" opacity=".05"/>
+            <!-- ══ BALIAZA CENTRALA (cea mai mare, în față) ══ -->
+            <g transform="translate(150, 131)">
+              <!-- Umbra -->
+              <ellipse cx="0" cy="5" rx="25" ry="5" fill="#000" opacity=".3"/>
+              <!-- Baza de ancorare (platforma) -->
+              <rect x="-24" y="-7" width="48" height="14" rx="4" fill="url(#bdBase)" stroke="#3ab54a" stroke-width="1" opacity=".9"/>
+              <!-- Bolț de prindere central -->
+              <circle cx="0" cy="0" r="5" fill="#131e14" stroke="#3ab54a" stroke-width=".7" opacity=".85"/>
+              <!-- Corp cilindric — diametru mai mare pentru cel din față -->
+              <rect x="-7.5" y="-118" width="15" height="114" fill="url(#bdBody)" stroke="#3ab54a" stroke-width=".6" opacity=".9"/>
+              <line x1="-7.5" y1="-4" x2="-7.5" y2="-118" stroke="#131e14" stroke-width="2"/>
+              <line x1="7.5" y1="-4" x2="7.5" y2="-118" stroke="#3ab54a" stroke-width=".5" opacity=".5"/>
+              <!-- Capac rotunjit -->
+              <ellipse cx="0" cy="-118" rx="7.5" ry="5" fill="#263a27" stroke="#3ab54a" stroke-width=".8" opacity=".95"/>
+              <!-- BENZI REFLECTORIZANTE — 3 benzi pe baliaza centrala -->
+              <rect x="-7.5" y="-103" width="15" height="10" rx="1.5" fill="#c8a800" opacity=".95"/>
+              <rect x="-7.5" y="-89" width="15" height="10" rx="1.5" fill="#f8fdf9" opacity=".9"/>
+              <rect x="-7.5" y="-75" width="15" height="10" rx="1.5" fill="#c8a800" opacity=".9"/>
+              <!-- Glow subtil galben -->
+              <ellipse cx="0" cy="-89" rx="22" ry="30" fill="#c8a800" opacity=".04"/>
             </g>
 
-            <!-- BALIAZA DIRECTIONALA 3 — dreapta -->
-            <g transform="translate(245, 128)">
-              <rect x="-12" y="-6" width="24" height="10" rx="3" fill="#223325" stroke="#3ab54a" stroke-width=".8" opacity=".9"/>
-              <circle cx="0" cy="-1" r="3" fill="#131e14" stroke="#3ab54a" stroke-width=".5" opacity=".7"/>
-              <rect x="-7" y="-97" width="14" height="93" fill="url(#blDir)" stroke="#3ab54a" stroke-width=".7" opacity=".92"/>
-              <ellipse cx="0" cy="-4" rx="7" ry="2.5" fill="#223325" opacity=".6"/>
-              <ellipse cx="0" cy="-97" rx="7" ry="4" fill="#283b2a" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
-              <rect x="-7" y="-87" width="14" height="9" rx="1" fill="#c8a800" opacity=".95"/>
-              <rect x="-7" y="-74" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".85"/>
-              <rect x="-7" y="-61" width="14" height="9" rx="1" fill="#c8a800" opacity=".9"/>
-              <rect x="-7" y="-48" width="14" height="9" rx="1" fill="#f0f7f1" opacity=".75"/>
-              <rect x="-7" y="-35" width="14" height="9" rx="1" fill="#c8a800" opacity=".85"/>
+            <!-- ══ BALIAZA DREAPTA (ca cea stânga) ══ -->
+            <g transform="translate(218, 130) scale(0.78)">
+              <ellipse cx="0" cy="4" rx="20" ry="4" fill="#000" opacity=".25"/>
+              <rect x="-20" y="-6" width="40" height="12" rx="3" fill="url(#bdBase)" stroke="#3ab54a" stroke-width=".8" opacity=".85"/>
+              <circle cx="0" cy="0" r="4" fill="#131e14" stroke="#3ab54a" stroke-width=".6" opacity=".8"/>
+              <rect x="-6" y="-103" width="12" height="99" fill="url(#bdBody)" stroke="#3ab54a" stroke-width=".5" opacity=".8"/>
+              <line x1="-6" y1="-4" x2="-6" y2="-103" stroke="#131e14" stroke-width="1.5"/>
+              <line x1="6" y1="-4" x2="6" y2="-103" stroke="#3ab54a" stroke-width=".5" opacity=".6"/>
+              <ellipse cx="0" cy="-103" rx="6" ry="4" fill="#243625" stroke="#3ab54a" stroke-width=".7" opacity=".9"/>
+              <rect x="-6" y="-90" width="12" height="8" rx="1" fill="#c8a800" opacity=".9"/>
+              <rect x="-6" y="-79" width="12" height="8" rx="1" fill="#f8fdf9" opacity=".8"/>
+              <rect x="-6" y="-68" width="12" height="8" rx="1" fill="#c8a800" opacity=".85"/>
             </g>
 
-            <!-- Label 100CM -->
-            <text x="55" y="153" font-family="Geist,sans-serif" font-size="8" fill="#6b8a70" text-anchor="middle" opacity=".7">100 cm</text>
-            <line x1="55" y1="128" x2="55" y2="31" stroke="#6b8a70" stroke-width=".5" opacity=".2" stroke-dasharray="2 3"/>
-            <line x1="48" y1="31" x2="62" y2="31" stroke="#6b8a70" stroke-width=".5" opacity=".2"/>
+            <!-- Label -->
+            <text x="150" y="158" font-family="Geist,sans-serif" font-size="8" fill="#84a389" text-anchor="middle" opacity=".65">stâlpi flexibili · 100 cm · benzi reflectorizante</text>
           </svg>
         </div>
         <div class="prod-body">
@@ -990,7 +1052,32 @@
 <footer>
   <div class="foot-inner">
     <div class="foot-brand">
-      <div class="logo">Infra<span>Hub</span></div>
+      <div class="logo" style="display:flex;align-items:center;gap:9px">
+  <svg class="logo-svg" viewBox="0 0 38 34" xmlns="http://www.w3.org/2000/svg" aria-label="InfraHub logo">
+    <defs>
+      <linearGradient id="lgroad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3ab54a"/>
+        <stop offset="100%" stop-color="#2d9e3c"/>
+      </linearGradient>
+    </defs>
+    <!-- Hexagon "hub" background -->
+    <polygon points="19,1 35,10 35,28 19,37 3,28 3,10" fill="none" stroke="#3ab54a" stroke-width="1.6" opacity=".5"/>
+    <!-- Road perspectivă: 3 benzi convergente spre centru -->
+    <!-- banda centrala -->
+    <line x1="19" y1="7" x2="19" y2="31" stroke="url(#lgroad)" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- linii laterale care converg spre un punct de fuga sus -->
+    <line x1="11" y1="30" x2="19" y2="7" stroke="#3ab54a" stroke-width="1.4" opacity=".7" stroke-linecap="round"/>
+    <line x1="27" y1="30" x2="19" y2="7" stroke="#3ab54a" stroke-width="1.4" opacity=".7" stroke-linecap="round"/>
+    <!-- marcaje de drum (linii punctate transversale) -->
+    <line x1="15.5" y1="14" x2="22.5" y2="14" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <line x1="14" y1="19" x2="24" y2="19" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <line x1="13" y1="25" x2="25" y2="25" stroke="#3ab54a" stroke-width="1" opacity=".4" stroke-dasharray="1.5 1.5"/>
+    <!-- nod central (hub dot) -->
+    <circle cx="19" cy="7" r="3" fill="#3ab54a" opacity=".9"/>
+    <circle cx="19" cy="7" r="1.5" fill="#131e14"/>
+  </svg>
+  <span style="letter-spacing:-.03em">Infra<span style="color:var(--green)">Hub</span></span>
+</div>
       <p>Blogul dedicat infrastructurii rutiere din România — analize, tendințe și soluții sustenabile pentru drumurile de mâine.</p>
       <nav class="foot-quicklinks" aria-label="Linkuri rapide">
         <a href="#context-infrastructura">Context 2026</a>
@@ -1017,9 +1104,9 @@
       <h4>Linkuri Utile</h4>
       <ul>
         <li><a href="https://www.tairo.ro" target="_blank">Tairo.ro — Produse sustenabile</a></li>
-        <li><a href="https://www.cnadnr.ro" target="_blank">CNAIR</a></li>
+        <li><a href="https://www.cnair.ro" target="_blank">CNAIR</a></li>
         <li><a href="https://www.mt.ro" target="_blank">Min. Transporturilor</a></li>
-        <li><a href="https://www.politiarutiera.ro" target="_blank">Poliția Rutieră</a></li>
+        <li><a href="https://www.politiaromana.ro/ro/politia-rutiera" target="_blank">Poliția Rutieră</a></li>
       </ul>
     </div>
   </div>
@@ -1100,7 +1187,7 @@ const A = {
 <h3>Ce presupun jaloanele asumate</h3>
 <p>Printre obligațiile asumate se numără modernizarea unor tronsoane de cale ferată, construcția de autostrăzi și drumuri expres, modernizarea stațiilor de transport public și crearea de conexiuni intermodale. Ritmul implementării este monitorizat atent de Comisia Europeană.</p>
 <h3>Blocajele identificate</h3>
-<p>Capacitatea administrativă rămâne principala problemă. Ministerul Transporturilor, <a href="https://www.cnadnr.ro" target="_blank">CNAIR</a> și autoritățile locale se confruntă cu lipsă de personal specializat, proceduri de achiziție complexe și contestații frecvente la licitații.</p>`},
+<p>Capacitatea administrativă rămâne principala problemă. Ministerul Transporturilor, <a href="https://www.cnair.ro" target="_blank">CNAIR</a> și autoritățile locale se confruntă cu lipsă de personal specializat, proceduri de achiziție complexe și contestații frecvente la licitații.</p>`},
   a8:{cat:'Urban',date:'20 Mar 2026',time:'6 min',author:'Redacția InfraHub',
     title:'Orașe inteligente: Cluj și București redefinesc mobilitatea urbană',
     body:`<p>Transformarea mobilității urbane este în curs în câteva dintre marile orașe ale României. Cluj-Napoca și București conduc această schimbare, deși cu abordări și viteze diferite.</p>
@@ -1114,7 +1201,7 @@ const A = {
 <h3>Cifre care spun totul</h3>
 <p>Pe anumite tronsoane, cum ar fi Brașov–Sighișoara, trenurile parcurg distanța mai lent decât autoturismele. Poduri cu restricții de viteză, linii cu infrastructură din anii 1960 și material rulant uzat completează imaginea.</p>
 <h3>Proiectele în derulare</h3>
-<p>Coridorul Rin–Dunăre, care traversează România, beneficiază de investiții importante din fonduri europene. Modernizarea Brașov–Sighișoara și achiziția de material rulant nou sunt prioritare, susținute de <a href="https://www.cnadnr.ro" target="_blank">politicile naționale de transport</a> aliniate cu Green Deal-ul european.</p>`},
+<p>Coridorul Rin–Dunăre, care traversează România, beneficiază de investiții importante din fonduri europene. Modernizarea Brașov–Sighișoara și achiziția de material rulant nou sunt prioritare, susținute de <a href="https://www.cnair.ro" target="_blank">politicile naționale de transport</a> aliniate cu Green Deal-ul european.</p>`},
   a10:{cat:'Siguranță Rutieră',date:'8 Apr 2026',time:'5 min',author:'Redacția InfraHub',
     title:'Barierele de protecție din cauciuc: alternative moderne la beton',
     body:`<p>Barierele de protecție din cauciuc reciclat oferă avantaje clare față de alternativele din beton în multe aplicații rutiere: parcări, zone industriale, separarea benzilor de lucru pe șantier.</p>
@@ -1128,7 +1215,7 @@ const A = {
 <h3>Județele cu cea mai bună absorbție</h3>
 <p>Județele cu administrații locale mai puternice și personal tehnic experimentat tind să performeze mai bine. Cluj, Ilfov și câteva județe din vest se numără constant printre lideri. Capacitatea instituțională contează mai mult decât resursele financiare brute.</p>
 <h3>Ce soluții există?</h3>
-<p>Programele de suport tehnic finanțate european, mentoringul între primării și simplificarea procedurilor de achiziție publică pot face diferența. <a href="https://www.cnadnr.ro" target="_blank">CNAIR</a> joacă un rol central în coordonarea absorbției pentru proiectele de drumuri naționale.</p>`},
+<p>Programele de suport tehnic finanțate european, mentoringul între primării și simplificarea procedurilor de achiziție publică pot face diferența. <a href="https://www.cnair.ro" target="_blank">CNAIR</a> joacă un rol central în coordonarea absorbției pentru proiectele de drumuri naționale.</p>`},
   a12:{cat:'Urban',date:'22 Apr 2026',time:'5 min',author:'Redacția InfraHub',
     title:'Pistele de biciclete în România: progres timid față de media europeană',
     body:`<p>Mobilitatea pe bicicletă câștigă teren în România, dar infrastructura necesară rămâne în urmă față de cerere și față de standardele europene.</p>
@@ -1161,7 +1248,7 @@ const A = {
     title:'Poduri cu restricții în România: o infrastructură îmbătrânită care îngrijorează',
     body:`<p>Sute de poduri pe drumuri naționale din România funcționează sub capacitate sau cu restricții de tonaj. Această realitate afectează transportul de mărfuri, crește costurile logistice și reprezintă un risc de siguranță.</p>
 <h3>Dimensiunea problemei</h3>
-<p>Conform datelor <a href="https://www.cnadnr.ro" target="_blank">CNAIR</a>, o parte semnificativă din podurile de pe drumurile naționale au fost construite în perioada 1950–1980 și necesită reabilitare sau înlocuire. Pe unele, restricțiile de tonaj limitează circulația camioanelor de mare capacitate.</p>
+<p>Conform datelor <a href="https://www.cnair.ro" target="_blank">CNAIR</a>, o parte semnificativă din podurile de pe drumurile naționale au fost construite în perioada 1950–1980 și necesită reabilitare sau înlocuire. Pe unele, restricțiile de tonaj limitează circulația camioanelor de mare capacitate.</p>
 <h3>Finanțarea reabilitării</h3>
 <p>Fondurile de coeziune europene 2021–2027 includ alocări specifice pentru reabilitarea podurilor. Prioritizarea proiectelor se face pe baza evaluărilor tehnice, cu accent pe podurile care deservesc coridoarele europene de transport.</p>`},
   a17:{cat:'Siguranță Rutieră',date:'2 Iun 2026',time:'5 min',author:'Redacția InfraHub',
@@ -1177,7 +1264,7 @@ const A = {
 <h3>Tipurile de proiecte finanțate</h3>
 <p>Programul Transport finanțează atât infrastructura de mare viteză (autostrăzi, drumuri expres), cât și reabilitarea drumurilor existente. Proiectele de siguranță rutieră — inclusiv instalarea de echipamente de protecție — sunt eligibile pentru cofinanțare europeană.</p>
 <h3>Absorbția în 2026</h3>
-<p>Ritmul de absorbție s-a îmbunătățit față de perioadele anterioare, dar România rămâne sub media europeană. <a href="https://www.cnadnr.ro" target="_blank">CNAIR</a> și ministerul de resort lucrează la simplificarea procedurilor pentru a accelera contractarea.</p>`},
+<p>Ritmul de absorbție s-a îmbunătățit față de perioadele anterioare, dar România rămâne sub media europeană. <a href="https://www.cnair.ro" target="_blank">CNAIR</a> și ministerul de resort lucrează la simplificarea procedurilor pentru a accelera contractarea.</p>`},
   a19:{cat:'Autostrăzi',date:'18 Iun 2026',time:'4 min',author:'Redacția InfraHub',
     title:'DEx 12: Oltenia conectată la Dobrogea pe 465 km de drum rapid',
     body:`<p>Deschiderea conexiunii DEx 12 cu A1 a creat un coridor de <strong>465 km de drum de mare viteză</strong> între Craiova și Constanța. Este una dintre realizările majore ale infrastructurii românești din 2025, cu efecte economice directe pentru Oltenia.</p>
@@ -1215,7 +1302,7 @@ const A = {
 <p>Un P+R funcționează doar dacă alternativa — transportul public — este mai rapidă și mai confortabilă decât mașina personală. Fără investiții simultane în frecvența și calitatea autobuzelor sau tramvaielor, parcările de transfer rămân subutilizate. Separatoarele și <a href="https://www.tairo.ro" target="_blank">opritoarele de parcare din cauciuc reciclat</a> contribuie la organizarea eficientă a acestor spații.</p>`},
   a24:{cat:'Siguranță Rutieră',date:'25 Iul 2026',time:'7 min',author:'Redacția InfraHub',
     title:'Punctele negre din România: unde se produc cele mai grave accidente',
-    body:`<p><a href="https://www.cnadnr.ro" target="_blank">CNAIR</a> publică anual lista cu punctele negre din rețeaua rutieră națională — locațiile unde rata accidentelor grave depășește semnificativ media. Aceste date ghidează investițiile în siguranța infrastructurii.</p>
+    body:`<p><a href="https://www.cnair.ro" target="_blank">CNAIR</a> publică anual lista cu punctele negre din rețeaua rutieră națională — locațiile unde rata accidentelor grave depășește semnificativ media. Aceste date ghidează investițiile în siguranța infrastructurii.</p>
 <h3>Caracteristicile unui punct negru</h3>
 <p>De obicei, punctele negre sunt intersecții la nivel, curbe cu vizibilitate redusă, segmente fără separare a sensurilor sau zone cu depășiri periculoase frecvente. Soluțiile tipice includ separatoare fizice, restricții de viteză, semnalizare îmbunătățită și modernizarea geometriei drumului.</p>
 <h3>Intervenții rapide vs. reabilitare completă</h3>
