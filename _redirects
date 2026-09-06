@@ -1,0 +1,4 @@
+# Netlify serveste deja /slug/ pentru /slug/index.html (Pretty URLs).
+# Adauga aici doar redirectionari pentru URL-uri vechi care erau indexate.
+# Exemplu:
+# /articol-vechi    /a7-autostrada-moldovei-2026/    301

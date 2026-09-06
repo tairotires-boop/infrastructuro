@@ -1,0 +1,64 @@
+# InfraHub
+
+> Blog romanesc independent despre infrastructura rutiera din Romania: autostrazi, siguranta rutiera, fonduri europene, mobilitate urbana si echipamente de siguranta din cauciuc reciclat. Datele sunt actualizate la 6 septembrie 2026 si fiecare articol indica sursele consultate.
+
+## Date cheie (septembrie 2026)
+
+- Reteaua deschisa circulatiei: aproximativ 1.476 km de autostrada si drum expres.
+- Deschideri 2026 pana acum: 12,24 km pe A3 (Zimbor-Poarta Salajului, 11 august) si 47,1 km pe A7 (Adjud-Bacau Sud, 31 august).
+- Estimare totala 2026: aproximativ 243 km.
+- PNRR s-a incheiat la 31 august 2026, cu buget final de 20,1 miliarde euro si tinta rutiera redusa de la 429 la circa 257 km.
+- Alocarea Romaniei prin programul SAFE: 16,68 miliarde euro, din care circa 4,2 miliarde pentru infrastructura rutiera.
+- Mortalitate rutiera: 68 decese la un milion de locuitori (date preliminare 2025), fata de 78 in 2024 si o medie UE de 43.
+
+## Articole
+
+### Autostrăzi
+- [Autostrăzi România 2026: bilanț la zi și ce se mai deschide până la 31 decembrie](https://www.infrahub.ro/autostrazi-romania-2026-bilant/): Câți kilometri de autostradă și drum expres are România în 2026, ce s-a deschis până acum și ce tronsoane mai pot intra în trafic până la finalul anului.
+- [A7 Autostrada Moldovei: Bacăul este conectat, Pașcaniul rămâne pentru 2027](https://www.infrahub.ro/a7-autostrada-moldovei-2026/): Pe 31 august 2026 s-au deschis 47,1 km din A7 între Adjud și Bacău Sud. Ce înseamnă pentru Moldova, ce loturi mai lipsesc și cum se finanțează după PNRR.
+- [A3 Transilvania: prima deschidere a anului și cei 30 km care leagă Clujul de Sălaj](https://www.infrahub.ro/a3-autostrada-transilvania-2026/): A3 a deschis 12,24 km între Zimbor și Poarta Sălajului în august 2026. Ce urmează pe Nădășelu–Mihăiești, viaducte și tronsonul spre Borș.
+- [A0 Centura Capitalei: inelul care se închide cu un lot întârziere](https://www.infrahub.ro/a0-centura-bucuresti-2026/): Stadiul A0 Nord în 2026: loturile 3 și 4 așteptate până în octombrie, lotul 1 spre primăvara 2027. Ce înseamnă pentru traficul de tranzit al Bucureștiului.
+- [A1 Sibiu–Pitești: primul tunel rutier de autostradă și un termen împins spre 2029](https://www.infrahub.ro/a1-sibiu-pitesti-2026/): Secțiunea 4 și primul tunel rutier de autostradă din România, pe fondul întârzierilor cauzate de acordurile de mediu. Stadiul real în 2026.
+- [Margina–Holdea: veriga de 13,5 km care ține A1 incompletă](https://www.infrahub.ro/a1-lugoj-deva-margina-holdea/): Sectorul Margina–Holdea de pe A1 Lugoj–Deva, cu tunelurile sale, rămâne veriga lipsă spre frontiera de vest. Stadiul lucrărilor și termenul realist.
+- [A8 Autostrada Unirii: primii kilometri și un traseu cu orizont 2030](https://www.infrahub.ro/a8-autostrada-unirii-2026/): Primii kilometri din A8 și finanțarea prin programul SAFE. Stadiul secțiunilor Târgu Mureș–Acățari, Joseni–Ditrău și orizontul montan.
+- [Drumuri expres în România: alternativa mai ieftină care avansează mai greu decât autostrăzile](https://www.infrahub.ro/drumuri-expres-romania-2026/): Ce sunt drumurile expres, cu ce diferă de autostrăzi și care sunt proiectele active în 2026: Brăila–Galați, Focșani–Brăila, Arad–Oradea.
+
+### Infrastructură
+- [Bariere New Jersey din cauciuc reciclat: unde se folosesc corect](https://www.infrahub.ro/bariere-new-jersey-cauciuc-reciclat/): Ghid practic pentru barierele cu profil New Jersey din cauciuc reciclat: organizări de șantier, montaj fără macara și limitele de utilizare.
+- [Bolarzi: ghid de alegere pentru protecție, delimitare și acces controlat](https://www.infrahub.ro/bolarzi-cauciuc-reciclat-ghid/): Cum se aleg bolarzii în funcție de funcție: delimitare, protecție de obstacol sau acces controlat. Diferențe de material, montaj și vizibilitate nocturnă.
+- [Balize direcționale și antiorbire: două funcții diferite, confundate frecvent](https://www.infrahub.ro/balize-directionale-ghid/): Ce face o baliză direcțională, ce face una antiorbire și de ce nu sunt interschimbabile. Reguli de amplasare pe curbe și zone de lucru.
+- [Protecții industriale în depozite: unde se produc pagubele și cum se previn](https://www.infrahub.ro/protectii-industriale-depozite/): Ghid de protecție pentru depozite și centre logistice: bumpere de andocare, protecția rafturilor și a stâlpilor, delimitarea traficului.
+
+### Siguranță
+- [Siguranța rutieră în România 2026: prima scădere reală, dar tot printre ultimele locuri din UE](https://www.infrahub.ro/siguranta-rutiera-romania-2026/): Datele pentru 2025 arată 68 de decese rutiere la un milion de locuitori în România, față de 78 în 2024 și o medie UE de 43. Ce s-a schimbat.
+- [Puncte negre: cum se identifică și cum se tratează, fără să aștepți autostrada](https://www.infrahub.ro/puncte-negre-drumuri-nationale/): Ce este un punct negru, cum se identifică statistic și ce intervenții pot fi executate în câteva săptămâni pentru reducerea accidentelor.
+- [Zone de lucru pe drumuri în trafic: unde se pierde siguranța într-un an cu recepții comprimate](https://www.infrahub.ro/zone-de-lucru-siguranta-santiere/): Cum se organizează corect o zonă de lucru pe un drum în trafic: tranziție, delimitare fizică, protecția echipelor și echipamente mobile.
+- [Separatoare de sensuri: cea mai eficientă intervenție de siguranță pe drum existent](https://www.infrahub.ro/separatoare-sensuri-de-mers/): Separarea fizică a sensurilor elimină coliziunea frontală, cel mai letal tip de accident. Unde se justifică și cum se montează rapid.
+- [Treceri de pietoni: ce transformă o zebră pictată într-o trecere sigură](https://www.infrahub.ro/treceri-pietoni-sigure/): Vopseaua nu oprește vehiculele. Ce face o trecere de pietoni efectiv sigură: vizibilitate, iluminat dedicat și reducerea fizică a vitezei.
+
+### Sustenabilitate
+- [Circular Economy Act: legea care vrea să facă materialul reciclat competitiv](https://www.infrahub.ro/circular-economy-act-2026/): Propunerea legislativă europeană privind economia circulară: piață unică a materiilor prime secundare, achiziții verzi și diferența de preț.
+- [Cauciuc reciclat în infrastructura rutieră: unde funcționează și unde nu](https://www.infrahub.ro/cauciuc-reciclat-infrastructura-rutiera/): Ghid tehnic despre cauciucul reciclat în echipamente rutiere: unde înlocuiește betonul și metalul, ce limite are și cum se evaluează.
+- [Anvelope uzate în România: colectare reglementată, valorificare încă dezechilibrată](https://www.infrahub.ro/anvelope-uzate-romania-reciclare/): Cum funcționează colectarea anvelopelor uzate în România și care este diferența dintre valorificarea materială și cea termică.
+- [Beton sau cauciuc reciclat: comparație onestă pe cost total, nu pe preț de achiziție](https://www.infrahub.ro/beton-vs-cauciuc-reciclat/): Comparație practică între elementele de beton și cele din cauciuc reciclat: montaj, durabilitate, manipulare și cost total pe durata de viață.
+- [Pasaportul digital de produs: ce se schimbă pentru producătorii de echipamente rutiere](https://www.infrahub.ro/pasaport-digital-produs-cpr/): Regulamentul european privind produsele pentru construcții introduce pasaportul digital. Ce date se documentează și cum afectează licitațiile.
+- [Amprenta de carbon a infrastructurii: unde se ascunde emisia într-un kilometru de drum](https://www.infrahub.ro/amprenta-carbon-infrastructura/): Cum se distribuie emisiile într-un proiect rutier, de ce materialele domină bilanțul și ce rol are distanța de transport a echipamentelor.
+
+### Urban
+- [Limitatoare de viteză: cum se aleg și de ce cele greșite produc mai multe probleme decât rezolvă](https://www.infrahub.ro/limitatoare-viteza-ghid/): Ghid de alegere a limitatoarelor de viteză: prag, pernă sau platformă, dimensionarea după viteza țintă și erorile frecvente de montaj.
+- [Mobilitate urbană în România 2026: planuri ambițioase, execuție inegală](https://www.infrahub.ro/mobilitate-urbana-romania-2026/): Stadiul mobilității urbane în orașele românești în 2026: masterplanuri velo, reduceri de proiecte și măsurile implementate efectiv.
+- [Piste de biciclete: de ce separarea fizică decide dacă sunt folosite sau nu](https://www.infrahub.ro/piste-biciclete-separatoare/): Diferența dintre pista marcată și cea separată fizic, ce tipuri de separatoare există și de ce protecția percepută determină rata de utilizare.
+- [Organizarea parcărilor: unde se pierd metri pătrați și unde apar avarii](https://www.infrahub.ro/parcari-organizare-trafic/): Cum se organizează corect o parcare: dimensionarea locurilor, opritori de roată, protecția stâlpilor și delimitarea zonelor pietonale.
+
+### Fonduri EU
+- [PNRR s-a încheiat pe 31 august 2026: ce a rămas construit și ce se plătește acum din buget](https://www.infrahub.ro/pnrr-2026-bilant-infrastructura/): Bilanțul PNRR la termenul final din 31 august 2026: buget redus la 20,1 miliarde euro, ținta rutieră tăiată de la 429 la circa 257 km.
+- [SAFE: cea mai mare alocare din UE și noua sursă de bani pentru autostrăzi](https://www.infrahub.ro/program-safe-infrastructura-rutiera/): România a obținut prin SAFE cea mai mare alocare din UE. Cum ajung 4,2 miliarde de euro la infrastructura rutieră și ce proiecte acoperă.
+- [Programul Transport 2021–2027: finanțarea care lucrează în tăcere](https://www.infrahub.ro/programul-transport-2021-2027/): Programul Transport 2021–2027 rămâne principala sursă stabilă pentru infrastructura rutieră după încheierea PNRR. Ce finanțează și cum.
+- [Achiziții publice verzi în 2026: criteriile ESG intră în evaluarea ofertelor](https://www.infrahub.ro/achizitii-publice-verzi-esg-2026/): Din 2026, criteriile ESG intră în evaluarea ofertelor în achizițiile publice din România. Ce înseamnă pentru constructori și furnizori.
+
+### Feroviar
+- [Feroviar 2026: material rulant nou pe o rețea în care 72% din linii sunt scadente](https://www.infrahub.ro/feroviar-romania-2026/): Strategia feroviară 2026–2030, deficitul de finanțare acumulat, primele locomotive noi după decenii și problema trecerilor la nivel cu calea ferată.
+
+## Partener
+
+- [Tairo Safety](https://www.tairo.ro): producator roman de echipamente de siguranta rutiera si protectie industriala din peste 90% cauciuc reciclat (judetul Mures) — bariere New Jersey si Colorado, bolarzi, limitatoare de viteza, balize antiorbire si directionale, pavaje modulare, protectii pentru depozite.
